@@ -6,9 +6,9 @@ body {
   justify-content: center;
   align-items: center;
   background: 
-  /* linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px),  */
-  /* linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px),  */
-  /* linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px),  */
+  linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), 
+  linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), 
+  linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), 
   linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), #000;
   background-size: 10px 12px, 10px 12px, 10px 12px, 10px 12px;
   background-position: calc(5.5px - 4px) 50%, -9px 50%, calc(5.5px - 4px) calc(50% - 6.5px), -9px calc(50% - 6px);
@@ -19,8 +19,7 @@ body {
     position: absolute;
     left: 50%;
     top: 50%;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-            transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
   }
 }
 body:before {
@@ -41,8 +40,7 @@ body:before {
   }
 }
 body.darkmode {
-  -webkit-filter: saturate(0) brightness(0.75) contrast(1.25);
-          filter: saturate(0) brightness(0.75) contrast(1.25);
+  filter: saturate(0) brightness(0.75) contrast(1.25);
 }
 body.darkmode:before {
   opacity: 1;
@@ -60,8 +58,7 @@ body button {
   font-family: Futura;
   font-weight: 900;
   text-shadow: 0 5px 10px black;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   left: calc(50% + 100px);
   outline: none;
   cursor: pointer;
@@ -73,13 +70,7 @@ body button.refresh.loading:before {
   width: 70px;
   transition: width 1s ease-in-out;
   transition-delay: 0s;
-  -webkit-animation: bgload 2s ease-in 1 forwards;
-          animation: bgload 2s ease-in 1 forwards;
-}
-@-webkit-keyframes bgload {
-  to {
-    background-position: -200px 50%, 50% 50%;
-  }
+  animation: bgload 2s ease-in 1 forwards;
 }
 @keyframes bgload {
   to {
@@ -93,16 +84,7 @@ body button.refresh:before {
   background-size: 1100px 100%, 100%;
   background-repeat: no-repeat;
   background-position: -400px 50%, 50% 50%;
-  -webkit-animation: bgload2 1.5s ease-out 1 forwards;
-          animation: bgload2 1.5s ease-out 1 forwards;
-}
-@-webkit-keyframes bgload2 {
-  from {
-    background-position: -200px 50%, 50% 50%;
-  }
-  to {
-    background-position: 0px 50%, 50% 50%;
-  }
+  animation: bgload2 1.5s ease-out 1 forwards;
 }
 @keyframes bgload2 {
   from {
@@ -113,8 +95,7 @@ body button.refresh:before {
   }
 }
 body button.active:before {
-  -webkit-transform: translateX(25px);
-          transform: translateX(25px);
+  transform: translateX(25px);
   background: #222;
 }
 body button:before {
@@ -127,8 +108,7 @@ body button:before {
   top: 37.5px;
   z-index: 2;
   left: calc(50% - 10px);
-  -webkit-transform: translateX(-25px);
-          transform: translateX(-25px);
+  transform: translateX(-25px);
   box-shadow: inset 0 -1.5px 5px rgba(0, 0, 0, 0.75);
   transition: 0.3s ease-in-out;
 }
@@ -152,8 +132,7 @@ body #wrap {
   transition: -webkit-filter 0.5s ease-in-out;
   transition: filter 0.5s ease-in-out;
   transition: filter 0.5s ease-in-out, -webkit-filter 0.5s ease-in-out;
-  -webkit-filter: hue-rotate(var(--hue));
-          filter: hue-rotate(var(--hue));
+  filter: hue-rotate(var(--hue));
   grid-template-rows: repeat(10, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -171,8 +150,7 @@ body #wrap {
   min-width: 700px;
 }
 body #wrap.hide .row {
-  -webkit-clip-path: polygon(-100% -100%, -100% -100%, -100% 200%, -100% 200%);
-          clip-path: polygon(-100% -100%, -100% -100%, -100% 200%, -100% 200%);
+  clip-path: polygon(-100% -100%, -100% -100%, -100% 200%, -100% 200%);
 }
 body #wrap .row {
   width: 50%;
