@@ -37,17 +37,17 @@ function draw() {
   }, 2000);
 }
 
-// $(".darkmode").click(function() {
-//   $("body").toggleClass("darkmode");
-//   $(this).toggleClass("active");
-//   draw();
-// });
+$(".darkmode").click(function() {
+  $("body").toggleClass("darkmode");
+  $(this).toggleClass("active");
+  draw();
+});
 
-// $(".refresh").on("click", function() {
-//   draw();
-// });
+$(".refresh").on("click", function() {
+  draw();
+});
 
-// $(document).ready(function() {
-//   $("#wrap").removeClass("hide");
-//   draw();
-// });
+$(document).ready(function() {
+  $("#wrap").removeClass("hide");
+  draw();
+});
