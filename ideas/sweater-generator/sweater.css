@@ -1,3 +1,4 @@
+/* Brackground */
 body {
   width: 100vw;
   height: 100vh;
@@ -18,6 +19,7 @@ body {
     transform: translateX(-50%) translateY(-50%);
   }
 }
+/* Darkmode Background */
 body:before {
   content: "";
   position: absolute;
@@ -41,6 +43,7 @@ body.darkmode {
 body.darkmode:before {
   opacity: 1;
 }
+/* Button Style */
 body button {
   position: absolute;
   margin-bottom: 50px;
@@ -63,6 +66,7 @@ body button:focus,
 body button:hover {
   outline: none;
 }
+/* Regenerate Button Transition */
 body button.refresh.loading:before {
   width: 70px;
   transition: width 1s ease-in-out;
@@ -1425,19 +1429,21 @@ body #wrap .row.full20 .cell:after {
   -webkit-filter: invert(1);
           filter: invert(1);
   opacity: 1;
-}
+} */
 body #wrap .row.full21 .cell {
   opacity: 1;
 }
-body #wrap .row.full21 .cell.darkmode:before, body #wrap .row.full21 .cell.darkmode.cell1:before, body #wrap .row.full21 .cell.darkmode.cell9:before {
+body #wrap .row.full21 .cell.darkmode:before,
+body #wrap .row.full21 .cell.darkmode.cell1:before,
+body #wrap .row.full21 .cell.darkmode.cell9:before {
   -webkit-clip-path: polygon(0 59%, 9% 70%, 21% 65%, 20% 54%, 10% 43%, 10% 24%, 20% 11%, 31% 8%, 28% 18%, 30% 33%, 35% 41%, 42% 39%, 47% 32%, 48% 19%, 51% 23%, 55% 43%, 55% 61%, 63% 69%, 71% 65%, 75% 58%, 72% 38%, 66% 28%, 61% 18%, 71% 24%, 80% 38%, 83% 51%, 84% 62%, 92% 65%, 98% 63%, 100% 59%, 100% 100%, 86% 98%, 77% 94%, 65% 92%, 54% 93%, 48% 96%, 40% 98%, 31% 97%, 22% 94%, 12% 95%, 0 100%);
-          clip-path: polygon(0 59%, 9% 70%, 21% 65%, 20% 54%, 10% 43%, 10% 24%, 20% 11%, 31% 8%, 28% 18%, 30% 33%, 35% 41%, 42% 39%, 47% 32%, 48% 19%, 51% 23%, 55% 43%, 55% 61%, 63% 69%, 71% 65%, 75% 58%, 72% 38%, 66% 28%, 61% 18%, 71% 24%, 80% 38%, 83% 51%, 84% 62%, 92% 65%, 98% 63%, 100% 59%, 100% 100%, 86% 98%, 77% 94%, 65% 92%, 54% 93%, 48% 96%, 40% 98%, 31% 97%, 22% 94%, 12% 95%, 0 100%);
-  content: '';
+  clip-path: polygon(0 59%, 9% 70%, 21% 65%, 20% 54%, 10% 43%, 10% 24%, 20% 11%, 31% 8%, 28% 18%, 30% 33%, 35% 41%, 42% 39%, 47% 32%, 48% 19%, 51% 23%, 55% 43%, 55% 61%, 63% 69%, 71% 65%, 75% 58%, 72% 38%, 66% 28%, 61% 18%, 71% 24%, 80% 38%, 83% 51%, 84% 62%, 92% 65%, 98% 63%, 100% 59%, 100% 100%, 86% 98%, 77% 94%, 65% 92%, 54% 93%, 48% 96%, 40% 98%, 31% 97%, 22% 94%, 12% 95%, 0 100%);
+  content: "";
   top: 0;
   -webkit-mask: none;
-          mask: none;
+  mask: none;
   -webkit-transform: none;
-          transform: none;
+  transform: none;
   background-clip: none;
   -webkit-background-clip: none;
   width: 100%;
@@ -1448,27 +1454,29 @@ body #wrap .row.full21 .cell.darkmode:before, body #wrap .row.full21 .cell.darkm
   bottom: auto;
   border-radius: 0;
 }
-body #wrap .row.full21 .cell.darkmode:after, body #wrap .row.full21 .cell.darkmode.cell1:after, body #wrap .row.full21 .cell.darkmode.cell9:after {
+body #wrap .row.full21 .cell.darkmode:after,
+body #wrap .row.full21 .cell.darkmode.cell1:after,
+body #wrap .row.full21 .cell.darkmode.cell9:after {
   display: none;
 }
 body #wrap .row.full21 .cell:not(.darkmode) {
   -webkit-transform: rotate(var(--angle));
-          transform: rotate(var(--angle));
+  transform: rotate(var(--angle));
 }
 body #wrap .row.full21 .cell:before {
   -webkit-mask: none;
-          mask: none;
+  mask: none;
   -webkit-clip-path: polygon(50% 40%, 100% 90%, 100% 100%, 50% 50%, 0 100%, 0 90%);
-          clip-path: polygon(50% 40%, 100% 90%, 100% 100%, 50% 50%, 0 100%, 0 90%);
+  clip-path: polygon(50% 40%, 100% 90%, 100% 100%, 50% 50%, 0 100%, 0 90%);
   top: -30px;
 }
 body #wrap .row.full21 .cell:after {
   -webkit-mask: none;
-          mask: none;
+  mask: none;
   -webkit-clip-path: polygon(50% 20%, 100% 70%, 100% 100%, 50% 50%, 0 100%, 0 70%);
-          clip-path: polygon(50% 20%, 100% 70%, 100% 100%, 50% 50%, 0 100%, 0 70%);
+  clip-path: polygon(50% 20%, 100% 70%, 100% 100%, 50% 50%, 0 100%, 0 70%);
   -webkit-filter: invert(1);
-          filter: invert(1);
+  filter: invert(1);
   opacity: 1;
 }
 body #wrap .row.full21 .cell:before {
@@ -1477,13 +1485,15 @@ body #wrap .row.full21 .cell:before {
   left: 0;
   top: 0;
 }
-body #wrap .row.full21 .cell.cell5:not(.darkmode):before, body #wrap .row.full21 .cell.cell7:not(.darkmode):before {
+body #wrap .row.full21 .cell.cell5:not(.darkmode):before,
+body #wrap .row.full21 .cell.cell7:not(.darkmode):before {
   width: 50%;
   height: 50%;
   top: 25%;
   left: 25%;
 }
-body #wrap .row.full21 .cell.cell2:not(.darkmode):before, body #wrap .row.full21 .cell.cell6:not(.darkmode):before {
+body #wrap .row.full21 .cell.cell2:not(.darkmode):before,
+body #wrap .row.full21 .cell.cell6:not(.darkmode):before {
   width: 75%;
   height: 75%;
   top: 12.5%;
@@ -1508,7 +1518,7 @@ body #wrap .row.full22 .cell.cell6:not(.darkmode):before {
   height: 75%;
   top: 12.5%;
   left: 12.5%;
-} */
+}
 
 /* Cell Drawer */
 body #wrap .cell {
@@ -1547,7 +1557,6 @@ body #wrap .cell.cell9.darkmode:before {
 }
 /* PATTERNS */
 /* Reindeer */
-/*
 body #wrap .cell.cell1:before,
 body #wrap .cell.cell9:before {
   -webkit-clip-path: polygon(57% 0%, 57% 13%, 51% 13%, 51% 8%, 45% 8%, 45% 24%, 30% 24%, 29% 8%, 24% 8%, 24% 12%, 18% 12%, 18% 1%, 11% 1%, 11% 7%, 5% 7%, 5% 13%, 16% 14%, 17% 20%, 23% 20%, 24% 24%, 28% 25%, 29% 30%, 23% 30%, 23% 35%, 16% 36%, 17% 46%, 30% 47%, 30% 53%, 36% 53%, 36% 99%, 42% 100%, 41% 76%, 48% 76%, 48% 99%, 54% 99%, 54% 77%, 73% 77%, 74% 100%, 81% 100%, 81% 77%, 86% 77%, 86% 100%, 92% 100%, 93% 53%, 85% 53%, 86% 48%, 93% 47%, 93% 41%, 86% 41%, 86% 47%, 46% 46%, 45% 36%, 52% 36%, 52% 31%, 46% 31%, 46% 24%, 51% 24%, 51% 20%, 57% 19%, 57% 14%, 70% 14%, 70% 8%, 64% 8%, 64% 1%, 57% 0%);
