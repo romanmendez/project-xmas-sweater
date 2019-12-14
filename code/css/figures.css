@@ -1,9 +1,5 @@
-body {
-  display: flex;
-  flex-flow: row wrap;
-}
 .box {
-  background: black;
+  background: white;
   width: 100px;
   height: 100px;
 }
