@@ -1,4 +1,9 @@
 body {
+  zoom: 0.75;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
   width: 100vw;
   height: 100vh;
   max-width: 100vw;
@@ -9,4 +14,26 @@ body {
   background: linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), #000;
   background-size: 10px 12px, 10px 12px, 10px 12px, 10px 12px;
   background-position: calc(5.5px - 4px) 50%, -9px 50%, calc(5.5px - 4px) calc(50% - 6.5px), -9px calc(50% - 6px);
+}
+body #wrap {
+  display: grid;
+  transition: -webkit-filter 0.5s ease-in-out;
+  transition: filter 0.5s ease-in-out;
+  transition: filter 0.5s ease-in-out, -webkit-filter 0.5s ease-in-out;
+  filter: hue-rotate(var(--hue));
+  grid-template-rows: repeat(10, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 700px;
+  height: 700px;
+  position: relative;
+  margin-top: -40px;
+  z-index: 2;
+  box-shadow: 0 40px 40px -10px rgba(0, 0, 0, 0.5), 0 0 0 200vh rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  background: linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), #000;
+  background-size: 10px 12px, 10px 12px, 10px 12px, 10px 12px;
+  background-position: 0px 50%, -10.5px 50%, 0px calc(50% - 6px), -10.5px calc(50% - 6px);
+  overflow: hidden;
+  min-width: 700px;
 }
