@@ -7,10 +7,10 @@ window.onload = () => {
 
   function getMousePosition(canvas, event) {
     let rect = canvas.getBoundingClientRect();
-    let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
     let width = rect.right - rect.left;
     let height = rect.bottom - rect.top;
+    let x = event.clientX - rect.left * 0.75;
+    let y = event.clientY - rect.top * 0.75;
     console.log("Coordinate x: " + x, "Coordinate y: " + y, "event x:", event.clientX, "event y:", event.clientY, "Rect L", rect.left, "Rect T", rect.top, "width:", width, "height:", height);
   }
   canvas.addEventListener("mousedown", e => getMousePosition(canvas, e));
