@@ -18,14 +18,11 @@ class Grid {
       let patternRows = [];
       for (let r = 0; r < this.rowLength; r++) {
         let randomFigure = Math.floor(Math.random() * (this.figures.length + this.blank));
-        console.log(randomFigure);
-        console.log(figureRows, patternRows);
         figureRows.push(this.figures[randomFigure]);
         patternRows.push(this.patterns[c]);
       }
       this.grid.push(figureRows, patternRows);
     }
-    console.log(this.grid);
   }
   shuffle() {
     for (let i = this.grid.length - 1; i > 0; i -= 1) {
@@ -41,9 +38,8 @@ class Grid {
           this.posX += 100;
           this.posXM -= 100;
         } else {
-          e.draw(this.posX, this.posY);
-          e.draw(this.posXM, this.posY);
-          console.log(this.posXM);
+          e.drawSingle(this.posX, this.posY);
+          e.drawSingle(this.posXM, this.posY);
           this.posX += 100;
           this.posXM -= 100;
         }
@@ -52,5 +48,6 @@ class Grid {
       this.posY += 100;
       this.posXM = this.rowLength * 2 * 100 - 100;
     });
+    this.posY = 0;
   }
 }

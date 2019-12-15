@@ -21,10 +21,10 @@ window.onload = () => {
   let star = new Figure(ctx, "star");
   let triangle = new Figure(ctx, "triangle");
 
+  let picket = new Figure(ctx, "picket2", "picket1");
+
   let figuresArr = [reindeer, darkStar, goat, anis, pitchfork, dinosaur, horns, tree, heart, ax, star, triangle];
   let patternArr = [picket1, picket2, picket3];
-
-  let pitcket = new Figure(ctx, "picket1");
 
   let grid = new Grid(ctx, figuresArr, patternArr);
   grid.create();

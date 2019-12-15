@@ -1,18 +1,31 @@
 class Figure {
-  constructor(ctx, figure) {
+  constructor(ctx, figure1, figure2 = []) {
     this.ctx = ctx;
-    this.figure = this.getFigure(figure);
+    this.figure1 = this.getFigure(figure1);
+    this.figure2 = this.getFigure(figure2);
   }
-  draw(sX, sY) {
+  drawSingle(sX, sY) {
     this.ctx.beginPath();
-    this.ctx.moveTo(sX + this.figure[0], sY + this.figure[1]);
-    for (let i = 0; i < this.figure.length; i += 2) {
-      this.ctx.lineTo(sX + this.figure[i], sY + this.figure[i + 1]);
+    this.ctx.moveTo(sX + this.figure1[0], sY + this.figure1[1]);
+    for (let i = 0; i < this.figure1.length; i += 2) {
+      this.ctx.lineTo(sX + this.figure1[i], sY + this.figure1[i + 1]);
     }
     this.ctx.fill();
     this.ctx.closePath();
   }
-
+  drawDouble(sX, sY, offset) {
+    this.ctx.beginPath();
+    this.ctx.moveTo(sX + this.figure1[0], sY + this.figure1[1]);
+    for (let i = 0; i < this.figure1.length; i += 2) {
+      this.ctx.lineTo(sX + this.figure1[i], sY + this.figure1[i + 1]);
+    }
+    this.ctx.moveTo(sX + this.figure2[0], sY + offset + this.figure2[1]);
+    for (let i = 0; i < this.figure2.length; i += 2) {
+      this.ctx.lineTo(sX + this.figure2[i], sY + offset + this.figure2[i + 1]);
+    }
+    this.ctx.fill();
+    this.ctx.closePath();
+  }
   getFigure(figure) {
     let Coordinates = {
       darkStar: [48, 0, 8, 94, 14, 94, 100, 32, 0, 32, 90, 94, 93, 91, 11, 36, 89, 36, 16, 88, 18, 80, 49, 10, 93, 93, 95, 87],
