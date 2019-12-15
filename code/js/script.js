@@ -2,6 +2,9 @@ window.onload = () => {
   let canvas = document.getElementById("canvas0");
   let ctx = canvas.getContext("2d");
 
+  canvas.width = 1000;
+  canvas.height = 700;
+
   let reindeer = new Figure(ctx, "reindeer");
   let picket1 = new Figure(ctx, "picket1");
   let picket2 = new Figure(ctx, "picket2");
@@ -19,7 +22,10 @@ window.onload = () => {
   let triangle = new Figure(ctx, "triangle");
 
   let figuresArr = [reindeer, picket1, picket2, picket3, darkStar, goat, anis, pitchfork, dinosaur, horns, tree, heart, ax, star, triangle];
-  picket1.draw(0, 0);
-  picket1.draw(100, 0);
-  picket1.draw(200, 0);
+
+  let pitcket = new Figure(ctx, "picket1");
+
+  let grid = new Grid(ctx, figuresArr);
+  grid.create();
+  grid.draw();
 };
