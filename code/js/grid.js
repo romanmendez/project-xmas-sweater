@@ -1,41 +1,56 @@
 class Grid {
-  constructor(ctx, figures, patterns = []) {
+  constructor(ctx, figures, patterns) {
     this.ctx = ctx;
     this.grid = [];
     this.figures = figures;
     this.patterns = patterns;
 
-    this.posX = 0;
-    this.posY = 0;
     this.rowLength = 5;
     this.columnLength = 7;
-    this.blank = 20;
+    this.posX = 0;
+    this.posY = 0;
+    this.posXM = this.rowLength * 2 * 100 - 100;
+    this.blank = 10;
   }
   create() {
     for (let c = 0; c < this.columnLength; c++) {
-      let row = [];
+      let figureRows = [];
+      let patternRows = [];
       for (let r = 0; r < this.rowLength; r++) {
         let randomFigure = Math.floor(Math.random() * (this.figures.length + this.blank));
         console.log(randomFigure);
-        console.log(row);
-        row.push(this.figures[randomFigure]);
+        console.log(figureRows, patternRows);
+        figureRows.push(this.figures[randomFigure]);
+        patternRows.push(this.patterns[c]);
       }
-      this.grid.push(row);
+      this.grid.push(figureRows, patternRows);
     }
     console.log(this.grid);
+  }
+  shuffle() {
+    for (let i = this.grid.length - 1; i > 0; i -= 1) {
+      let randomIndex = Math.floor(Math.random() * (i + 1));
+      [this.grid[i], this.grid[randomIndex]] = [this.grid[randomIndex], this.grid[i]];
+    }
+    return this.grid;
   }
   draw() {
     this.grid.forEach(row => {
       row.forEach(e => {
         if (e === undefined) {
           this.posX += 100;
+          this.posXM -= 100;
         } else {
           e.draw(this.posX, this.posY);
+          e.draw(this.posXM, this.posY);
+          console.log(this.posXM);
           this.posX += 100;
+          this.posXM -= 100;
         }
       });
       this.posX = 0;
       this.posY += 100;
+      this.posXM = this.rowLength * 2 * 100 - 100;
     });
   }
 }
