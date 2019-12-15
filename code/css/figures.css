@@ -1,5 +1,7 @@
 .box {
-  background: white;
+  background: linear-gradient(55deg, transparent 2.5px, #fff 2.5px, #fff 3.5px, #fff 4.5px, transparent 4.5px), linear-gradient(-55deg, transparent 2.5px, #fff 2.5px, #fff 3.5px, #fff 4.5px, transparent 4.5px), linear-gradient(55deg, transparent 2.5px, #fff 2.5px, #fff 3.5px, #fff 4.5px, transparent 4.5px), linear-gradient(-55deg, transparent 2.5px, #fff 2.5px, #fff 3.5px, #fff 4.5px, transparent 4.5px), #000;
+  background-size: 10px 12px, 10px 12px, 10px 12px, 10px 12px;
+  background-position: 0px 50%, -10.5px 50%, 0px calc(50% - 6px), -10.5px calc(50% - 6px);
   width: 100px;
   height: 100px;
 }
