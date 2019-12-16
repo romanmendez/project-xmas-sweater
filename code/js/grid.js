@@ -11,6 +11,8 @@ class Grid {
     this.posY = 0;
     this.posXM = this.rowLength * 2 * 100 - 100;
     this.blank = 10;
+
+    this.variations = [];
   }
   create() {
     for (let c = 0; c < this.columnLength; c++) {
@@ -51,11 +53,15 @@ class Grid {
     });
     this.posY = 0;
   }
-  variation() {
-    let randomRow = Math.floor(Math.random() * this.rowLength * 2) * 100;
-    let randowColumn = Math.floor(Math.random() * this.columnLength) * 100;
-    let randomFigure = this.figures[Math.floor(Math.random() * this.figures.length)];
-    this.ctx.clearRect(randomRow, randowColumn, 100, 100);
-    randomFigure.draw(randomRow, randowColumn, randomFigure);
+  variation(n = 3) {
+    for (let i = 0; i < n; i++) {
+      let randomRow = Math.floor(Math.random() * this.rowLength * 2) * 100;
+      let randowColumn = Math.floor(Math.random() * this.columnLength) * 100;
+      let randomFigure = this.figures[Math.floor(Math.random() * this.figures.length)];
+      this.variations.push([randomRow, randowColumn]);
+      this.ctx.clearRect(randomRow, randowColumn, 100, 100);
+      randomFigure.draw(randomRow, randowColumn, randomFigure);
+    }
+    console.log(this.variations);
   }
 }
