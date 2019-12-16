@@ -1,9 +1,19 @@
 window.onload = () => {
-  let canvas = document.getElementById("canvas0");
+  let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
 
   canvas.width = 1000;
   canvas.height = 700;
+
+  function getMousePosition(canvas, event) {
+    let rect = canvas.getBoundingClientRect();
+    let width = rect.right - rect.left;
+    let height = rect.bottom - rect.top;
+    let x = event.clientX - rect.left * 0.75;
+    let y = event.clientY - rect.top * 0.75;
+    console.log("Coordinate x: " + x, "Coordinate y: " + y, "event x:", event.clientX, "event y:", event.clientY, "Rect L", rect.left, "Rect T", rect.top, "width:", width, "height:", height);
+  }
+  canvas.addEventListener("mousedown", e => getMousePosition(canvas, e));
 
   let reindeer = new Figure(ctx, "reindeer");
   let picket1 = new Figure(ctx, "picket1");

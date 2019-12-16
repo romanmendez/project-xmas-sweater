@@ -32,6 +32,7 @@ class Grid {
     return this.grid;
   }
   draw() {
+    console.log(this.grid);
     this.grid.forEach(row => {
       row.forEach(e => {
         if (e === undefined) {
