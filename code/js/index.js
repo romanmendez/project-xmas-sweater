@@ -40,4 +40,5 @@ window.onload = () => {
   grid.create();
   grid.shuffle();
   grid.draw();
+  grid.variation();
 };

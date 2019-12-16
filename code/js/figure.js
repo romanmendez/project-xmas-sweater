@@ -4,24 +4,11 @@ class Figure {
     this.figure1 = this.getFigure(figure1);
     this.figure2 = this.getFigure(figure2);
   }
-  drawSingle(sX, sY) {
+  draw(sX, sY) {
     this.ctx.beginPath();
     this.ctx.moveTo(sX + this.figure1[0], sY + this.figure1[1]);
     for (let i = 0; i < this.figure1.length; i += 2) {
       this.ctx.lineTo(sX + this.figure1[i], sY + this.figure1[i + 1]);
-    }
-    this.ctx.fill();
-    this.ctx.closePath();
-  }
-  drawDouble(sX, sY, offset) {
-    this.ctx.beginPath();
-    this.ctx.moveTo(sX + this.figure1[0], sY + this.figure1[1]);
-    for (let i = 0; i < this.figure1.length; i += 2) {
-      this.ctx.lineTo(sX + this.figure1[i], sY + this.figure1[i + 1]);
-    }
-    this.ctx.moveTo(sX + this.figure2[0], sY + offset + this.figure2[1]);
-    for (let i = 0; i < this.figure2.length; i += 2) {
-      this.ctx.lineTo(sX + this.figure2[i], sY + offset + this.figure2[i + 1]);
     }
     this.ctx.fill();
     this.ctx.closePath();
