@@ -30,7 +30,7 @@ window.onload = () => {
   let figuresArr = [reindeer, darkStar, goat, anis, pitchfork, dinosaur, horns, tree, heart, ax, star, triangle];
   let patternArr = [picket1, picket2, picket3];
 
-  let grid = new Grid(ctx, figuresArr, patternArr);
+  let sweater = new Sweater(ctx, figuresArr, patternArr);
 
   function getMousePosition(canvas, event) {
     let rect = canvas.getBoundingClientRect();
@@ -43,19 +43,22 @@ window.onload = () => {
   canvas.addEventListener("mousedown", e => {
     getMousePosition(canvas, e);
 
-    grid.variations.some(e => {
+    sweater.variations.some(function(e, i) {
       let figureX = e[0] * scale;
       let figureY = e[1] * scale;
       if (clickX > figureX && clickX < figureX + 100 && clickY > figureY && clickY < figureY + 100) {
         score++;
+        sweater.variations.splice(i, 1);
+        sweater.draw();
+        console.log("variations array", sweater.variations);
         console.log("figureX", figureX, "figureY", figureY);
-        console.log(score);
+        console.log("score", score);
       }
     });
   });
 
-  grid.create();
-  grid.shuffle();
-  grid.draw();
-  grid.variation();
+  sweater.create();
+  sweater.shuffle();
+  sweater.draw();
+  sweater.variation();
 };

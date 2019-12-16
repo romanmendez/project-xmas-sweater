@@ -1,4 +1,4 @@
-class Grid {
+class Sweater {
   constructor(ctx, figures, patterns) {
     this.ctx = ctx;
     this.grid = [];
@@ -33,9 +33,9 @@ class Grid {
     }
     return this.grid;
   }
-  draw() {
+  draw(grid = this.grid) {
     console.log(this.grid);
-    this.grid.forEach(row => {
+    grid.forEach(row => {
       row.forEach(e => {
         if (e === undefined) {
           this.posX += 100;
