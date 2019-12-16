@@ -1,19 +1,13 @@
 window.onload = () => {
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
+  let clickX;
+  let clickY;
+  let scale = 0.75;
+  let score = 0;
 
   canvas.width = 1000;
   canvas.height = 700;
-
-  function getMousePosition(canvas, event) {
-    let rect = canvas.getBoundingClientRect();
-    let width = rect.right - rect.left;
-    let height = rect.bottom - rect.top;
-    let x = event.clientX - rect.left * 0.75;
-    let y = event.clientY - rect.top * 0.75;
-    console.log("Coordinate x: " + x, "Coordinate y: " + y, "event x:", event.clientX, "event y:", event.clientY, "Rect L", rect.left, "Rect T", rect.top, "width:", width, "height:", height);
-  }
-  canvas.addEventListener("mousedown", e => getMousePosition(canvas, e));
 
   let reindeer = new Figure(ctx, "reindeer");
   let picket1 = new Figure(ctx, "picket1");
@@ -37,6 +31,29 @@ window.onload = () => {
   let patternArr = [picket1, picket2, picket3];
 
   let grid = new Grid(ctx, figuresArr, patternArr);
+
+  function getMousePosition(canvas, event) {
+    let rect = canvas.getBoundingClientRect();
+    let width = rect.right - rect.left;
+    let height = rect.bottom - rect.top;
+    clickX = event.clientX - rect.left * 0.75;
+    clickY = event.clientY - rect.top * 0.75;
+    console.log("Coordinate x: " + clickX, "Coordinate y: " + clickY, "event x:", event.clientX, "event y:", event.clientY, "Rect L", rect.left, "Rect T", rect.top, "width:", width, "height:", height);
+  }
+  canvas.addEventListener("mousedown", e => {
+    getMousePosition(canvas, e);
+
+    grid.variations.some(e => {
+      let figureX = e[0] * scale;
+      let figureY = e[1] * scale;
+      if (clickX > figureX && clickX < figureX + 100 && clickY > figureY && clickY < figureY + 100) {
+        score++;
+        console.log("figureX", figureX, "figureY", figureY);
+        console.log(score);
+      }
+    });
+  });
+
   grid.create();
   grid.shuffle();
   grid.draw();
