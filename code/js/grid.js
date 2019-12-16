@@ -39,8 +39,8 @@ class Grid {
           this.posX += 100;
           this.posXM -= 100;
         } else {
-          e.drawSingle(this.posX, this.posY);
-          e.drawSingle(this.posXM, this.posY);
+          e.draw(this.posX, this.posY);
+          e.draw(this.posXM, this.posY);
           this.posX += 100;
           this.posXM -= 100;
         }
@@ -50,5 +50,12 @@ class Grid {
       this.posXM = this.rowLength * 2 * 100 - 100;
     });
     this.posY = 0;
+  }
+  variation() {
+    let randomRow = Math.floor(Math.random() * this.rowLength * 2) * 100;
+    let randowColumn = Math.floor(Math.random() * this.columnLength) * 100;
+    let randomFigure = this.figures[Math.floor(Math.random() * this.figures.length)];
+    this.ctx.clearRect(randomRow, randowColumn, 100, 100);
+    randomFigure.draw(randomRow, randowColumn, randomFigure);
   }
 }
