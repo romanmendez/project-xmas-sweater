@@ -2,66 +2,80 @@ class Sweater {
   constructor(ctx, figures, patterns) {
     this.ctx = ctx;
     this.grid = [];
+    this.variations = [];
     this.figures = figures;
     this.patterns = patterns;
 
-    this.rowLength = 5;
-    this.columnLength = 7;
+    this.rowLength = 500;
+    this.columnLength = 700;
+    this.variationsNumber = 5;
     this.posX = 0;
     this.posY = 0;
-    this.posXM = this.rowLength * 2 * 100 - 100;
+    this.posXM = this.rowLength * 2 - 100;
     this.blank = 10;
 
-    this.variations = [];
+    this.figureVariations = [];
   }
-  create() {
-    for (let c = 0; c < this.columnLength; c++) {
-      let figureRows = [];
-      let patternRows = [];
-      for (let r = 0; r < this.rowLength; r++) {
-        let randomFigure = Math.floor(Math.random() * (this.figures.length + this.blank));
-        figureRows.push(this.figures[randomFigure]);
-        patternRows.push(this.patterns[c]);
+  randomizer(array) {
+    for (var j, x, i = array.length; i; j = parseInt(Math.random() * i), x = array[--i], array[i] = array[j], array[j] = x);
+    return array;
+  }
+  createGrid() {
+    for (let c = 0; c < this.columnLength; c += 100) {
+      let position = [];
+      for (let r = 0; r < this.rowLength; r += 100) {
+        position.push([r, c]);
       }
-      this.grid.push(figureRows, patternRows);
+      this.grid.push(position);
     }
-  }
-  shuffle() {
-    for (let i = this.grid.length - 1; i > 0; i -= 1) {
-      let randomIndex = Math.floor(Math.random() * (i + 1));
-      [this.grid[i], this.grid[randomIndex]] = [this.grid[randomIndex], this.grid[i]];
-    }
-    return this.grid;
-  }
-  draw(grid = this.grid) {
-    console.log(this.grid);
-    grid.forEach(row => {
-      row.forEach(e => {
-        if (e === undefined) {
-          this.posX += 100;
-          this.posXM -= 100;
-        } else {
-          e.draw(this.posX, this.posY);
-          e.draw(this.posXM, this.posY);
-          this.posX += 100;
-          this.posXM -= 100;
-        }
-      });
-      this.posX = 0;
-      this.posY += 100;
-      this.posXM = this.rowLength * 2 * 100 - 100;
+    this.randomizer(this.grid);
+    this.grid.forEach(e => {
+      this.randomizer(e);
     });
-    this.posY = 0;
+    this.grid.forEach((line, lineIndex) => {
+      line.forEach((position, positionIndex) => {
+        let randomE = Math.floor(Math.random() * this.figures.length);
+        this.grid[lineIndex][positionIndex].push(this.figures[randomE]);
+      });
+    });
   }
-  variation(n = 3) {
-    for (let i = 0; i < n; i++) {
-      let randomRow = Math.floor(Math.random() * this.rowLength * 2) * 100;
-      let randowColumn = Math.floor(Math.random() * this.columnLength) * 100;
-      let randomFigure = this.figures[Math.floor(Math.random() * this.figures.length)];
-      this.variations.push([randomRow, randowColumn]);
-      this.ctx.clearRect(randomRow, randowColumn, 100, 100);
-      randomFigure.draw(randomRow, randowColumn, randomFigure);
+  createVariation() {
+    for (let i = 0; i < this.variationsNumber; i++) {
+      let randomX = this.rowLength * 2 - 100 - Math.floor(Math.random() * ((this.rowLength - 100) / 100)) * 100;
+      let randomY = Math.floor(Math.random() * ((this.columnLength - 100) / 100)) * 100;
+      let randomPos = [randomX, randomY];
+      if (this.variations.indexOf(randomPos) === -1) {
+        this.variations.push([randomX, randomY]);
+      }
     }
+    let randomFigure = this.randomizer(this.figures);
+    let i = 0;
+    this.variations.forEach(position => {
+      if (this.search(position[0], position[1], randomFigure[i])) {
+        i++;
+      } else {
+        position.push(randomFigure[i]);
+      }
+    });
+  }
+  draw(figure) {
+    if (figure[0][0][0]) {
+      figure.forEach(line => {
+        line.forEach(position => {
+          position[2].draw(position[0], position[1]);
+          position[2].drawMirror(position[0], position[1]);
+        });
+      });
+    }
+  }
+  search(posX, posY, figure) {
+    this.grid.forEach(line => {
+      line.forEach(position => {
+        return position[0] === posX && position[1] === posY && position[2] === figure;
+      });
+    });
+  }
+  variation() {
     console.log(this.variations);
   }
 }

@@ -57,8 +57,9 @@ window.onload = () => {
     });
   });
 
-  sweater.create();
-  sweater.shuffle();
-  sweater.draw();
-  sweater.variation();
+  sweater.createGrid();
+  sweater.createVariation();
+  console.log(sweater.grid, sweater.variations);
+  sweater.draw(sweater.grid);
+  sweater.draw(sweater.variations);
 };
