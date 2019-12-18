@@ -1,12 +1,13 @@
 class Sweater {
-  constructor(ctx, figures, width, height) {
+  constructor(ctx, figures, width, height, scale) {
     this.ctx = ctx;
     this.grid = [];
     this.variations = [];
     this.blanks = [];
     this.figures = figures;
+    this.scale = scale;
 
-    this.width = width;
+    this.width = width / 2;
     this.height = height;
     this.variationsNumber = 10;
     this.blanksNumber = 20;
@@ -24,7 +25,7 @@ class Sweater {
     // create linear grid
     for (let c = 0; c < this.height; c += 100) {
       let position = [];
-      for (let r = 0; r < this.width / 2; r += 100) {
+      for (let r = 0; r < this.width; r += 100) {
         position.push([r, c]);
       }
       this.grid.push(position);
