@@ -16,6 +16,7 @@ class Figure {
     this.ctx.save();
     this.ctx.translate(1000, 0);
     this.ctx.scale(-1, 1);
+    this.ctx.clearRect(sX, sY, 100, 100);
     this.ctx.beginPath();
     this.ctx.moveTo(sX + this.figure[0], sY + this.figure[1]);
     for (let i = 0; i < this.figure.length; i += 2) {

@@ -36,23 +36,25 @@ window.onload = () => {
     let rect = canvas.getBoundingClientRect();
     let width = rect.right - rect.left;
     let height = rect.bottom - rect.top;
-    clickX = event.clientX - rect.left * 0.75;
-    clickY = event.clientY - rect.top * 0.75;
+    clickX = event.clientX - rect.left;
+    clickY = event.clientY - rect.top;
     console.log("Coordinate x: " + clickX, "Coordinate y: " + clickY, "event x:", event.clientX, "event y:", event.clientY, "Rect L", rect.left, "Rect T", rect.top, "width:", width, "height:", height);
   }
   canvas.addEventListener("mousedown", e => {
     getMousePosition(canvas, e);
-
-    sweater.variations.some(function(e, i) {
-      let figureX = e[0] * scale;
-      let figureY = e[1] * scale;
+    clickX = sweater.rowLength * 2 - clickX;
+    console.log("x", clickX);
+    console.log(score);
+    sweater.variations.some((e, i) => {
+      let figureX = e[0];
+      let figureY = e[1];
       if (clickX > figureX && clickX < figureX + 100 && clickY > figureY && clickY < figureY + 100) {
-        score++;
         sweater.variations.splice(i, 1);
+        sweater.variationsNumber--;
         sweater.draw();
-        console.log("variations array", sweater.variations);
-        console.log("figureX", figureX, "figureY", figureY);
-        console.log("score", score);
+        return score++;
+      } else if (score > 0) {
+        return score--;
       }
     });
   });

@@ -8,7 +8,7 @@ class Sweater {
 
     this.rowLength = 500;
     this.columnLength = 700;
-    this.variationsNumber = 5;
+    this.variationsNumber = 10;
     this.posX = 0;
     this.posY = 0;
     this.posXM = this.rowLength * 2 - 100;
@@ -59,21 +59,22 @@ class Sweater {
         this.variations.push(position);
       })
     );
-    // randomize variations array
+    // randomize and shrink variations array
     this.randomizer(this.variations);
+    this.variations.splice(0, this.variations.length - this.variationsNumber);
   }
   draw() {
-    this.grid.forEach(line => {
+    this.grid.forEach(line =>
       line.forEach(position => {
+        position[2].draw(position[0], position[1]);
+        position[2].drawMirror(position[0], position[1]);
         for (let i = 0; i < this.variationsNumber; i++) {
           if (position === this.variations[i]) {
             position[3].drawMirror(position[0], position[1]);
-          } else {
-            position[2].draw(position[0], position[1]);
           }
         }
-      });
-    });
+      })
+    );
   }
   searchGrid(posX, posY, figure) {
     this.grid.forEach(line => {
