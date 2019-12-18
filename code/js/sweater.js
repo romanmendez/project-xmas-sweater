@@ -1,19 +1,18 @@
 class Sweater {
-  constructor(ctx, figures, patterns) {
+  constructor(ctx, figures, width, height) {
     this.ctx = ctx;
     this.grid = [];
     this.variations = [];
     this.blanks = [];
     this.figures = figures;
-    this.patterns = patterns;
 
-    this.rowLength = 500;
-    this.columnLength = 700;
+    this.width = width;
+    this.height = height;
     this.variationsNumber = 10;
-    this.blanksNumber = 10;
+    this.blanksNumber = 20;
     this.posX = 0;
     this.posY = 0;
-    this.posXM = this.rowLength * 2 - 100;
+    this.posXM = this.width * 2 - 100;
 
     this.figureVariations = [];
   }
@@ -23,9 +22,9 @@ class Sweater {
   }
   createGrid() {
     // create linear grid
-    for (let c = 0; c < this.columnLength; c += 100) {
+    for (let c = 0; c < this.height; c += 100) {
       let position = [];
-      for (let r = 0; r < this.rowLength; r += 100) {
+      for (let r = 0; r < this.width / 2; r += 100) {
         position.push([r, c]);
       }
       this.grid.push(position);
@@ -79,7 +78,7 @@ class Sweater {
     );
     this.blanks.forEach(position => {
       this.ctx.clearRect(position[0], position[1], 100, 100);
-      this.ctx.clearRect(this.rowLength * 2 - 100 - position[0], position[1], 100, 100);
+      this.ctx.clearRect(this.width * 2 - 100 - position[0], position[1], 100, 100);
     });
   }
   searchGrid(posX, posY, figure) {

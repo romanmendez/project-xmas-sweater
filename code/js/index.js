@@ -3,34 +3,35 @@ window.onload = () => {
   let ctx = canvas.getContext("2d");
   let clickX;
   let clickY;
-  let scale = 0.75;
+  let width = 1000;
+  let height = 700;
   let score = 0;
 
-  canvas.width = 1000;
-  canvas.height = 700;
+  canvas.width = width;
+  canvas.height = height;
 
-  let reindeer = new Figure(ctx, "reindeer");
-  let picket1 = new Figure(ctx, "picket1");
-  let picket2 = new Figure(ctx, "picket2");
-  let picket3 = new Figure(ctx, "picket3");
-  let darkStar = new Figure(ctx, "darkStar");
-  let goat = new Figure(ctx, "goat");
-  let anis = new Figure(ctx, "anis");
-  let pitchfork = new Figure(ctx, "pitchfork");
-  let dinosaur = new Figure(ctx, "dinosaur");
-  let horns = new Figure(ctx, "horns");
-  let tree = new Figure(ctx, "tree");
-  let heart = new Figure(ctx, "heart");
-  let ax = new Figure(ctx, "ax");
-  let star = new Figure(ctx, "star");
-  let triangle = new Figure(ctx, "triangle");
+  let reindeer = new Figure(ctx, "reindeer", width, height);
+  let picket1 = new Figure(ctx, "picket1", width, height);
+  let picket2 = new Figure(ctx, "picket2", width, height);
+  let picket3 = new Figure(ctx, "picket3", width, height);
+  let darkStar = new Figure(ctx, "darkStar", width, height);
+  let goat = new Figure(ctx, "goat", width, height);
+  let anis = new Figure(ctx, "anis", width, height);
+  let pitchfork = new Figure(ctx, "pitchfork", width, height);
+  let dinosaur = new Figure(ctx, "dinosaur", width, height);
+  let horns = new Figure(ctx, "horns", width, height);
+  let tree = new Figure(ctx, "tree", width, height);
+  let heart = new Figure(ctx, "heart", width, height);
+  let ax = new Figure(ctx, "ax", width, height);
+  let star = new Figure(ctx, "star", width, height);
+  let triangle = new Figure(ctx, "triangle", width, height);
 
   let picket = new Figure(ctx, "picket2", "picket1");
 
   let figuresArr = [reindeer, darkStar, goat, anis, pitchfork, dinosaur, horns, tree, heart, ax, star, triangle];
   let patternArr = [picket1, picket2, picket3];
 
-  let sweater = new Sweater(ctx, figuresArr, patternArr);
+  let sweater = new Sweater(ctx, figuresArr, width, height);
 
   function getMousePosition(canvas, event) {
     let rect = canvas.getBoundingClientRect();
@@ -53,12 +54,10 @@ window.onload = () => {
         sweater.variationsNumber--;
         sweater.draw();
         return score++;
-      } else if (score > 0) {
-        return score--;
       }
     });
   });
-
+  // ctx.scale(0.5, 0.5);
   sweater.createGrid();
   sweater.addVariation();
   console.log("grid", sweater.grid, "variations", sweater.variations, "blanks", sweater.blanks);

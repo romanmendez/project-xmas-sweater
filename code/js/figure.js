@@ -1,7 +1,9 @@
 class Figure {
-  constructor(ctx, figure) {
+  constructor(ctx, figure, width, height) {
     this.ctx = ctx;
     this.figure = this.getFigure(figure);
+    this.width = width;
+    this.height = height;
   }
   draw(sX, sY) {
     this.ctx.beginPath();
@@ -14,7 +16,7 @@ class Figure {
   }
   drawMirror(sX, sY) {
     this.ctx.save();
-    this.ctx.translate(1000, 0);
+    this.ctx.translate(this.width, 0);
     this.ctx.scale(-1, 1);
     this.ctx.clearRect(sX, sY, 100, 100);
     this.ctx.beginPath();
