@@ -61,6 +61,6 @@ window.onload = () => {
 
   sweater.createGrid();
   sweater.addVariation();
-  console.log("grid", sweater.grid, "variations", sweater.variations);
+  console.log("grid", sweater.grid, "variations", sweater.variations, "blanks", sweater.blanks);
   sweater.draw();
 };

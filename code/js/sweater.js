@@ -3,16 +3,17 @@ class Sweater {
     this.ctx = ctx;
     this.grid = [];
     this.variations = [];
+    this.blanks = [];
     this.figures = figures;
     this.patterns = patterns;
 
     this.rowLength = 500;
     this.columnLength = 700;
     this.variationsNumber = 10;
+    this.blanksNumber = 10;
     this.posX = 0;
     this.posY = 0;
     this.posXM = this.rowLength * 2 - 100;
-    this.blank = 10;
 
     this.figureVariations = [];
   }
@@ -59,8 +60,9 @@ class Sweater {
         this.variations.push(position);
       })
     );
-    // randomize and shrink variations array
+    // randomize variations, create blanks and shrink both arrays
     this.randomizer(this.variations);
+    this.blanks = this.variations.slice(this.variationsNumber, this.blanksNumber + this.variationsNumber);
     this.variations.splice(0, this.variations.length - this.variationsNumber);
   }
   draw() {
@@ -75,6 +77,10 @@ class Sweater {
         }
       })
     );
+    this.blanks.forEach(position => {
+      this.ctx.clearRect(position[0], position[1], 100, 100);
+      this.ctx.clearRect(this.rowLength * 2 - 100 - position[0], position[1], 100, 100);
+    });
   }
   searchGrid(posX, posY, figure) {
     this.grid.forEach(line => {
