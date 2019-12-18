@@ -58,8 +58,7 @@ window.onload = () => {
   });
 
   sweater.createGrid();
-  sweater.createVariation();
-  console.log(sweater.grid, sweater.variations);
-  sweater.draw(sweater.grid);
-  sweater.draw(sweater.variations);
+  sweater.addVariation();
+  console.log("grid", sweater.grid, "variations", sweater.variations);
+  sweater.draw();
 };

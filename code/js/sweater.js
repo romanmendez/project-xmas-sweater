@@ -21,6 +21,7 @@ class Sweater {
     return array;
   }
   createGrid() {
+    // create linear grid
     for (let c = 0; c < this.columnLength; c += 100) {
       let position = [];
       for (let r = 0; r < this.rowLength; r += 100) {
@@ -28,54 +29,57 @@ class Sweater {
       }
       this.grid.push(position);
     }
+    console.log("pre-figure", this.grid);
+    // randomize grid
     this.randomizer(this.grid);
     this.grid.forEach(e => {
       this.randomizer(e);
     });
-    this.grid.forEach((line, lineIndex) => {
-      line.forEach((position, positionIndex) => {
+    // add random figures to each position
+    this.grid.forEach(line =>
+      line.forEach(position => {
         let randomE = Math.floor(Math.random() * this.figures.length);
-        this.grid[lineIndex][positionIndex].push(this.figures[randomE]);
+        position.push(this.figures[randomE]);
+      })
+    );
+  }
+  addVariation() {
+    // add varied figure to every grid position
+    this.grid.forEach(line =>
+      line.forEach(position => {
+        let figureVar = this.figures.slice();
+        figureVar.splice(figureVar.indexOf(position[2]), 1);
+        let randomE = Math.floor(Math.random() * figureVar.length);
+        position.push(figureVar[randomE]);
+      })
+    );
+    // add all grid positions to variations array
+    this.grid.forEach(line =>
+      line.forEach(position => {
+        this.variations.push(position);
+      })
+    );
+    // randomize variations array
+    this.randomizer(this.variations);
+  }
+  draw() {
+    this.grid.forEach(line => {
+      line.forEach(position => {
+        for (let i = 0; i < this.variationsNumber; i++) {
+          if (position === this.variations[i]) {
+            position[3].drawMirror(position[0], position[1]);
+          } else {
+            position[2].draw(position[0], position[1]);
+          }
+        }
       });
     });
   }
-  createVariation() {
-    for (let i = 0; i < this.variationsNumber; i++) {
-      let randomX = this.rowLength * 2 - 100 - Math.floor(Math.random() * ((this.rowLength - 100) / 100)) * 100;
-      let randomY = Math.floor(Math.random() * ((this.columnLength - 100) / 100)) * 100;
-      let randomPos = [randomX, randomY];
-      if (this.variations.indexOf(randomPos) === -1) {
-        this.variations.push([randomX, randomY]);
-      }
-    }
-    let randomFigure = this.randomizer(this.figures);
-    let i = 0;
-    this.variations.forEach(position => {
-      if (this.search(position[0], position[1], randomFigure[i])) {
-        i++;
-      } else {
-        position.push(randomFigure[i]);
-      }
-    });
-  }
-  draw(figure) {
-    if (figure[0][0][0]) {
-      figure.forEach(line => {
-        line.forEach(position => {
-          position[2].draw(position[0], position[1]);
-          position[2].drawMirror(position[0], position[1]);
-        });
-      });
-    }
-  }
-  search(posX, posY, figure) {
+  searchGrid(posX, posY, figure) {
     this.grid.forEach(line => {
       line.forEach(position => {
         return position[0] === posX && position[1] === posY && position[2] === figure;
       });
     });
-  }
-  variation() {
-    console.log(this.variations);
   }
 }
