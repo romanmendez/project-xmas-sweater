@@ -18,11 +18,21 @@ body #wrap {
 .board {
   display: flex;
   justify-content: center;
+  text-align: center;
+  font-family: Futura;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  margin-top: 20px;
 }
 .time,
 .score {
-  font-size: 25px;
-  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+  font-size: 20px;
+  color: #701319;
   text-transform: uppercase;
   letter-spacing: 2px;
   border: none;
