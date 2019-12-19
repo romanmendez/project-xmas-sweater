@@ -9,8 +9,8 @@ class Sweater {
 
     this.width = width / 2;
     this.height = height;
-    this.variationsNumber = 10;
-    this.blanksNumber = 20;
+    this.variationsNumber = 5;
+    this.blanksNumber = 10;
     this.posX = 0;
     this.posY = 0;
     this.posXM = this.width * 2 - 100;

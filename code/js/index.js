@@ -1,12 +1,15 @@
 window.onload = () => {
   let canvas = document.getElementById("canvas");
+  let wrap = document.getElementById("wrap");
   let ctx = canvas.getContext("2d");
   let clickX;
   let clickY;
-  let scale = 0.5;
-  let width = 1000 / scale;
-  let height = 700 / scale;
+  let zoom = 0.7;
+  let scale = 1 * zoom;
+  let width = 1000;
+  let height = 700;
   let score = 0;
+  let varIndex;
 
   canvas.width = width;
   canvas.height = height;
@@ -28,31 +31,34 @@ window.onload = () => {
 
   let sweater = new Sweater(ctx, figuresArr, width, height);
 
-  function getMousePosition(canvas, event) {
-    let rect = canvas.getBoundingClientRect();
-    clickX = event.clientX - rect.left;
-    clickY = event.clientY - rect.top;
-    console.log("Coordinate x: " + clickX, "Coordinate y: " + clickY, "event x:", event.clientX, "event y:", event.clientY, "Rect L", rect.left, "Rect T", rect.top, "width:", width, "height:", height);
+  function getMousePosition(element, event) {
+    let el = element.getBoundingClientRect();
+    clickX = event.pageX - el.left;
+    clickY = event.pageY - el.top;
+    console.log("clickX: " + clickX, "clickY: " + clickY, "eX:", event.clientX, "eY:", event.clientY, "element L", el.left, "element T", el.top, "width:", el.width, "height:", el.height);
   }
   canvas.addEventListener("mousedown", e => {
-    getMousePosition(canvas, e);
+    getMousePosition(wrap, e);
     clickX = width * scale - clickX;
     console.log("x", clickX, "y", clickY);
     console.log(score);
-    console.log(sweater.variations);
-    sweater.variations.some((e, i) => {
+    let isVariation = sweater.variations.some((e, i) => {
       let figureX = e[0] * scale;
       let figureY = e[1] * scale;
-      if (clickX > figureX && clickX < figureX + 100 * scale && clickY > figureY && clickY < figureY + 100 * scale) {
-        let errased = sweater.variations.splice(i, 1);
-        sweater.variationsNumber--;
-        sweater.draw();
-        console.log(errased);
-        return score++;
-      }
+      varIndex = i;
+      return clickX > figureX && clickX < figureX + 100 * scale && clickY > figureY && clickY < figureY + 100 * scale;
     });
+    if (isVariation) {
+      let errased = sweater.variations.splice(varIndex, 1);
+      sweater.variationsNumber--;
+      sweater.draw();
+      console.log(errased);
+      score++;
+    } else if (score > 0) {
+      score--;
+    }
   });
-  ctx.scale(scale, scale);
+  // ctx.scale(scale, scale);
   sweater.createGrid();
   sweater.addVariation();
   console.log("grid", sweater.grid, "variations", sweater.variations, "blanks", sweater.blanks);

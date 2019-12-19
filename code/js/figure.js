@@ -12,6 +12,7 @@ class Figure {
       this.ctx.lineTo(sX + this.figure[i], sY + this.figure[i + 1]);
     }
     this.ctx.fill();
+    this.ctx.scale(1, 1);
     this.ctx.closePath();
   }
   drawMirror(sX, sY) {
@@ -49,21 +50,3 @@ class Figure {
     return Coordinates[figure];
   }
 }
-
-let reindeer = new Figure(ctx, "reindeer", width, height);
-let picket1 = new Figure(ctx, "picket1", width, height);
-let picket2 = new Figure(ctx, "picket2", width, height);
-let picket3 = new Figure(ctx, "picket3", width, height);
-let darkStar = new Figure(ctx, "darkStar", width, height);
-let goat = new Figure(ctx, "goat", width, height);
-let anis = new Figure(ctx, "anis", width, height);
-let pitchfork = new Figure(ctx, "pitchfork", width, height);
-let dinosaur = new Figure(ctx, "dinosaur", width, height);
-let horns = new Figure(ctx, "horns", width, height);
-let tree = new Figure(ctx, "tree", width, height);
-let heart = new Figure(ctx, "heart", width, height);
-let ax = new Figure(ctx, "ax", width, height);
-let star = new Figure(ctx, "star", width, height);
-let triangle = new Figure(ctx, "triangle", width, height);
-
-let figuresArr = [reindeer, darkStar, goat, anis, pitchfork, dinosaur, horns, tree, heart, ax, star, triangle];
