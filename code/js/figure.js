@@ -1,17 +1,33 @@
 class Figure {
-  constructor(ctx, figure1, figure2 = []) {
+  constructor(ctx, figure, canvasWidth, canvasHeight) {
     this.ctx = ctx;
-    this.figure1 = this.getFigure(figure1);
-    this.figure2 = this.getFigure(figure2);
+    this.figure = this.getFigure(figure);
+    this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
   }
   draw(sX, sY) {
     this.ctx.beginPath();
-    this.ctx.moveTo(sX + this.figure1[0], sY + this.figure1[1]);
-    for (let i = 0; i < this.figure1.length; i += 2) {
-      this.ctx.lineTo(sX + this.figure1[i], sY + this.figure1[i + 1]);
+    this.ctx.moveTo(sX + this.figure[0], sY + this.figure[1]);
+    for (let i = 0; i < this.figure.length; i += 2) {
+      this.ctx.lineTo(sX + this.figure[i], sY + this.figure[i + 1]);
+    }
+    this.ctx.fill();
+    this.ctx.scale(1, 1);
+    this.ctx.closePath();
+  }
+  drawMirror(sX, sY) {
+    this.ctx.save();
+    this.ctx.translate(this.canvasWidth, 0);
+    this.ctx.scale(-1, 1);
+    this.ctx.clearRect(sX, sY, 100, 100);
+    this.ctx.beginPath();
+    this.ctx.moveTo(sX + this.figure[0], sY + this.figure[1]);
+    for (let i = 0; i < this.figure.length; i += 2) {
+      this.ctx.lineTo(sX + this.figure[i], sY + this.figure[i + 1]);
     }
     this.ctx.fill();
     this.ctx.closePath();
+    this.ctx.restore();
   }
   getFigure(figure) {
     let Coordinates = {
