@@ -5,23 +5,16 @@ class ScoreBoard {
 }
 class Chronometer {
   constructor() {
-    this.currentTime = 132907;
+    this.currentTime = 10000;
     this.intervalId;
   }
   startClick() {
-    this.intervalId = setInterval(
-      function() {
-        this.currentTime += 1;
-      }.bind(this),
-      10
-    );
-  }
-  getMinutes() {
-    var minutes = Math.floor(this.currentTime / 100 / 60);
-    return minutes;
+    this.intervalId = setInterval(() => (this.currentTime -= 1), 10);
   }
   getSeconds() {
-    var seconds = Math.floor(this.currentTime / 100) % 60;
-    return seconds;
+    return Math.floor(this.currentTime / 100) % 60;
+  }
+  resetTime() {
+    this.currentTime = 0;
   }
 }
