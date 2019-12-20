@@ -48,3 +48,6 @@ body #wrap {
   background: rgba(255, 255, 255, 0.75);
   z-index: 0;
 }
+.hide {
+  display: none;
+}

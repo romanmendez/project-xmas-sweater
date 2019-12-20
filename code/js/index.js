@@ -1,6 +1,5 @@
 window.onload = () => {
   let canvas = document.getElementById("canvas");
-  let wrap = document.getElementById("wrap");
   let ctx = canvas.getContext("2d");
   let clickX;
   let clickY;
@@ -12,42 +11,51 @@ window.onload = () => {
   let varIndex;
   let timeUni = document.getElementById("timeUni");
   let timeDec = document.getElementById("timeDec");
+  let scoreUni = document.getElementById("scoreUni");
+  let scoreDec = document.getElementById("scoreDec");
+  let sweaters = document.getElementById("sweaters");
+
+  let background = document.getElementById("background");
+  let backgroundCtx = background.getContext("2d");
+  background.width = 10;
+  background.height = 10;
+
+  let backgroundImg = new Background(backgroundCtx, 10, 10);
+  backgroundImg.draw();
 
   canvas.width = width;
   canvas.height = height;
 
-  let reindeer = new Figure(ctx, "reindeer", width, height);
-  let darkStar = new Figure(ctx, "darkStar", width, height);
-  let goat = new Figure(ctx, "goat", width, height);
-  let anis = new Figure(ctx, "anis", width, height);
-  let pitchfork = new Figure(ctx, "pitchfork", width, height);
-  let dinosaur = new Figure(ctx, "dinosaur", width, height);
-  let horns = new Figure(ctx, "horns", width, height);
-  let tree = new Figure(ctx, "tree", width, height);
-  let heart = new Figure(ctx, "heart", width, height);
-  let ax = new Figure(ctx, "ax", width, height);
-  let star = new Figure(ctx, "star", width, height);
-  let triangle = new Figure(ctx, "triangle", width, height);
+  let reindeer = new Figure(ctx, "reindeer", width, height, background);
+  let darkStar = new Figure(ctx, "darkStar", width, height, background);
+  let goat = new Figure(ctx, "goat", width, height, background);
+  let anis = new Figure(ctx, "anis", width, height, background);
+  let pitchfork = new Figure(ctx, "pitchfork", width, height, background);
+  let dinosaur = new Figure(ctx, "dinosaur", width, height, background);
+  let horns = new Figure(ctx, "horns", width, height, background);
+  let tree = new Figure(ctx, "tree", width, height, background);
+  let heart = new Figure(ctx, "heart", width, height, background);
+  let ax = new Figure(ctx, "ax", width, height, background);
+  let star = new Figure(ctx, "star", width, height, background);
+  let triangle = new Figure(ctx, "triangle", width, height, background);
 
   let figuresArr = [reindeer, darkStar, goat, anis, pitchfork, dinosaur, horns, tree, heart, ax, star, triangle];
 
   let sweater = new Sweater(ctx, figuresArr, width, height);
-  let timer = new Timer();
+  let board = new Board();
 
-  timer.startClick(timeDec, timeUni);
-  timer.printSeconds(timeDec, timeUni);
+  board.startTime(timeDec, timeUni);
+  board.print(board.sweaters, sweaters);
 
   function getMousePosition(element, event) {
     let el = element.getBoundingClientRect();
-    clickX = event.pageX - el.left;
-    clickY = event.pageY - el.top;
+    clickX = event.clientX - el.left;
+    clickY = event.clientY - el.top;
     console.log("clickX: " + clickX, "clickY: " + clickY, "eX:", event.clientX, "eY:", event.clientY, "element L", el.left, "element T", el.top, "width:", el.width, "height:", el.height);
   }
   canvas.addEventListener("mousedown", e => {
     getMousePosition(wrap, e);
     clickX = width * scale - clickX;
-    console.log("x", clickX, "y", clickY);
-    console.log(score);
     let isVariation = sweater.variations.some((e, i) => {
       let figureX = e[0] * scale;
       let figureY = e[1] * scale;
@@ -59,9 +67,11 @@ window.onload = () => {
       sweater.variationsNumber--;
       sweater.draw();
       console.log(errased);
-      score++;
-    } else if (score > 0) {
-      score--;
+      board.score++;
+      board.print(board.score, scoreDec, scoreUni);
+    } else if (board.score > 0) {
+      board.score--;
+      board.print(board.score, scoreDec, scoreUni);
     }
   });
   // ctx.scale(scale, scale);
