@@ -31,7 +31,6 @@ class Sweater {
       }
       this.grid.push(position);
     }
-    console.log("pre-figure", this.grid);
     // randomize grid
     this.randomizer(this.grid);
     this.grid.forEach(e => {

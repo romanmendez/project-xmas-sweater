@@ -17,8 +17,8 @@ window.onload = () => {
 
   let background = document.getElementById("background");
   let backgroundCtx = background.getContext("2d");
-  background.width = 10;
-  background.height = 10;
+  background.width = 7;
+  background.height = 7;
 
   let backgroundImg = new Background(backgroundCtx, 10, 10);
   backgroundImg.draw();
@@ -37,9 +37,12 @@ window.onload = () => {
   let heart = new Figure(ctx, "heart", width, height, background);
   let ax = new Figure(ctx, "ax", width, height, background);
   let star = new Figure(ctx, "star", width, height, background);
+  let star2 = new Figure(ctx, "star2", width, height, background);
+  let rhombus = new Figure(ctx, "rhombus", width, height, background);
   let triangle = new Figure(ctx, "triangle", width, height, background);
+  let crown = new Figure(ctx, "crown", width, height, background);
 
-  let figuresArr = [reindeer, darkStar, goat, anis, pitchfork, dinosaur, horns, tree, heart, ax, star, triangle];
+  let figuresArr = [reindeer, darkStar, goat, anis, pitchfork, dinosaur, tree, heart, ax, star, rhombus, star2, crown, triangle];
 
   let sweater = new Sweater(ctx, figuresArr, width, height);
   let board = new Board(sweater);

@@ -6,6 +6,7 @@ class Background {
     this.height = height;
   }
   draw() {
+    this.ctx.scale(0.7, 0.7);
     this.ctx.fillStyle = "black";
     this.ctx.fillRect(0, 0, this.width, this.height);
     let backgrounPoly = [0, 5, 3, 10, 7, 10, 10, 5, 10, 0, 5, 8, 0, 0];
