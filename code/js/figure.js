@@ -1,9 +1,10 @@
 class Figure {
-  constructor(ctx, figure, canvasWidth, canvasHeight) {
+  constructor(ctx, figure, canvasWidth, canvasHeight, background) {
     this.ctx = ctx;
     this.figure = this.getFigure(figure);
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
+    this.background = background;
   }
   draw(sX, sY) {
     this.ctx.beginPath();
@@ -11,8 +12,8 @@ class Figure {
     for (let i = 0; i < this.figure.length; i += 2) {
       this.ctx.lineTo(sX + this.figure[i], sY + this.figure[i + 1]);
     }
+    this.ctx.fillStyle = this.ctx.createPattern(this.background, "repeat");
     this.ctx.fill();
-    this.ctx.scale(1, 1);
     this.ctx.closePath();
   }
   drawMirror(sX, sY) {

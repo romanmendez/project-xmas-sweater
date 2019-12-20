@@ -1,27 +1,37 @@
-class ScoreBoard {
-  constructor(ctx) {
-    this.ctx = ctx;
-  }
-}
-class Chronometer {
-  constructor() {
-    this.currentTime = 132907;
+class Board {
+  constructor(sweater) {
     this.intervalId;
+    this.time = 100;
+    this.score = 0;
+    this.sweater = sweater;
   }
-  startClick() {
-    this.intervalId = setInterval(
-      function() {
-        this.currentTime += 1;
-      }.bind(this),
-      10
-    );
+  startTime(dec, uni) {
+    this.intervalId = setInterval(() => {
+      if (this.time > 0) {
+        this.time -= 1;
+        this.print(this.time, dec, uni);
+      } else {
+        clearInterval(this.intervalId);
+        this.sweater.gameOver();
+      }
+    }, 1000);
   }
-  getMinutes() {
-    var minutes = Math.floor(this.currentTime / 100 / 60);
-    return minutes;
+  resetTime() {
+    this.time = 10;
   }
-  getSeconds() {
-    var seconds = Math.floor(this.currentTime / 100) % 60;
-    return seconds;
+  print(value, dec, uni = null) {
+    if (uni === null) {
+      dec.innerText = value;
+    } else {
+      if (value >= 0) {
+        if (value < 10) {
+          dec.innerText = "0";
+          uni.innerText = value;
+        } else {
+          dec.innerText = Math.floor(value / 10);
+          uni.innerText = value % 10;
+        }
+      }
+    }
   }
 }
