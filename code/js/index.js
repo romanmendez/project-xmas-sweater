@@ -10,6 +10,8 @@ window.onload = () => {
   let height = 700;
   let score = 0;
   let varIndex;
+  let timeUni = document.getElementById("timeUni");
+  let timeDec = document.getElementById("timeDec");
 
   canvas.width = width;
   canvas.height = height;
@@ -30,6 +32,10 @@ window.onload = () => {
   let figuresArr = [reindeer, darkStar, goat, anis, pitchfork, dinosaur, horns, tree, heart, ax, star, triangle];
 
   let sweater = new Sweater(ctx, figuresArr, width, height);
+  let timer = new Timer();
+
+  timer.startClick(timeDec, timeUni);
+  timer.printSeconds(timeDec, timeUni);
 
   function getMousePosition(element, event) {
     let el = element.getBoundingClientRect();
