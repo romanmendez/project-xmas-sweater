@@ -42,10 +42,9 @@ window.onload = () => {
   let figuresArr = [reindeer, darkStar, goat, anis, pitchfork, dinosaur, horns, tree, heart, ax, star, triangle];
 
   let sweater = new Sweater(ctx, figuresArr, width, height);
-  let board = new Board();
+  let board = new Board(sweater);
 
   board.startTime(timeDec, timeUni);
-  board.print(board.sweaters, sweaters);
 
   function getMousePosition(element, event) {
     let el = element.getBoundingClientRect();
@@ -64,19 +63,26 @@ window.onload = () => {
     });
     if (isVariation) {
       let errased = sweater.variations.splice(varIndex, 1);
-      sweater.variationsNumber--;
       sweater.draw();
       console.log(errased);
       board.score++;
       board.print(board.score, scoreDec, scoreUni);
+      if (sweater.variations.length === 0) {
+        sweater.clear();
+        sweater.createGrid();
+        sweater.addVariation();
+        sweater.draw();
+      }
     } else if (board.score > 0) {
       board.score--;
       board.print(board.score, scoreDec, scoreUni);
+    } else if (board.score === 0) {
+      sweater.gameOver();
     }
+    console.log(sweater.variations.length);
   });
   // ctx.scale(scale, scale);
   sweater.createGrid();
   sweater.addVariation();
-  console.log("grid", sweater.grid, "variations", sweater.variations, "blanks", sweater.blanks);
   sweater.draw();
 };

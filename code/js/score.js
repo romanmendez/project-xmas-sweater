@@ -1,9 +1,9 @@
 class Board {
-  constructor() {
+  constructor(sweater) {
     this.intervalId;
-    this.time = 10;
+    this.time = 100;
     this.score = 0;
-    this.sweaters = 5;
+    this.sweater = sweater;
   }
   startTime(dec, uni) {
     this.intervalId = setInterval(() => {
@@ -12,6 +12,7 @@ class Board {
         this.print(this.time, dec, uni);
       } else {
         clearInterval(this.intervalId);
+        this.sweater.gameOver();
       }
     }, 1000);
   }
@@ -32,11 +33,5 @@ class Board {
         }
       }
     }
-  }
-  isGameOver() {
-    return this.time === 0 || this.score === 0;
-  }
-  isWinner() {
-    return this.sweaters === 0;
   }
 }

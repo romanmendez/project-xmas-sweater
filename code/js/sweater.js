@@ -22,6 +22,7 @@ class Sweater {
     return array;
   }
   createGrid() {
+    this.grid = [];
     // create linear grid
     for (let c = 0; c < this.height; c += 100) {
       let position = [];
@@ -45,6 +46,7 @@ class Sweater {
     );
   }
   addVariation() {
+    this.variations = [];
     // add varied figure to every grid position
     this.grid.forEach(line =>
       line.forEach(position => {
@@ -82,11 +84,12 @@ class Sweater {
       this.ctx.clearRect(this.width * 2 - 100 - position[0], position[1], 100, 100);
     });
   }
-  searchGrid(posX, posY, figure) {
-    this.grid.forEach(line => {
-      line.forEach(position => {
-        return position[0] === posX && position[1] === posY && position[2] === figure;
-      });
-    });
+  clear() {
+    this.ctx.clearRect(0, 0, this.width * 2, this.height);
+  }
+  gameOver() {
+    this.clear();
+    this.ctx.font = "100px monospace";
+    this.ctx.fillText("GAME OVER", 250, 350);
   }
 }
