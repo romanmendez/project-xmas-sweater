@@ -57,11 +57,13 @@ window.onload = () => {
     board.score = 0;
     board.print(board.score, scoreDec, scoreUni);
     board.print(board.time, timeDec, timeUni);
+    board.startTime(timeDec, timeUni);
+  }
+  function newBoard() {
     sweater.clear();
     sweater.createGrid();
     sweater.addVariation();
     sweater.draw();
-    board.startTime(timeDec, timeUni);
   }
   canvas.addEventListener("mousedown", e => {
     getMousePosition(wrap, e);
@@ -85,12 +87,14 @@ window.onload = () => {
       sweater.gameOver();
     }
     if (sweater.variations.length === 0) {
-      startGame();
+      newBoard();
     }
   });
   startButton.addEventListener("click", () => {
+    newBoard();
     startGame();
   });
 
+  newBoard();
   startGame();
 };
