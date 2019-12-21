@@ -1,7 +1,7 @@
 class Board {
   constructor(sweater) {
     this.intervalId;
-    this.time = 60;
+    this.time = 2;
     this.score = 0;
     this.sweater = sweater;
   }
@@ -12,7 +12,7 @@ class Board {
         this.print(this.time, dec, uni);
       } else {
         clearInterval(this.intervalId);
-        this.sweater.gameOver();
+        this.sweater.timeUp(this.score);
       }
     }, 1000);
   }
@@ -33,5 +33,8 @@ class Board {
         }
       }
     }
+  }
+  clearTime() {
+    clearInterval(this.intervalId);
   }
 }

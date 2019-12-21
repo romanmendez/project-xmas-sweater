@@ -51,7 +51,6 @@ window.onload = () => {
     let el = element.getBoundingClientRect();
     clickX = event.clientX - el.left;
     clickY = event.clientY - el.top;
-    console.log(element, "clickX: " + clickX, "clickY: " + clickY, "eX:", event.clientX, "eY:", event.clientY, "element L", el.left, "element T", el.top, "width:", el.width, "height:", el.height);
   }
   canvas.addEventListener("mousedown", e => {
     getMousePosition(wrap, e);
@@ -63,21 +62,19 @@ window.onload = () => {
       return clickX > figureX && clickX < figureX + 100 * scale && clickY > figureY && clickY < figureY + 100 * scale;
     });
     if (isVariation) {
-      let errased = sweater.variations.splice(varIndex, 1);
+      sweater.variations.splice(varIndex, 1);
       sweater.draw();
-      console.log(errased);
       board.score++;
       board.print(board.score, scoreDec, scoreUni);
     } else if (board.score > 0) {
       board.score--;
       board.print(board.score, scoreDec, scoreUni);
     } else if (board.score === 0) {
+      board.clearTime();
       sweater.gameOver();
     }
     if (sweater.variations.length === 0) {
-      board.intervalId = clearInterval();
-      board.time = 60;
-      board.score = 0;
+      board.clearTime();
       board.print(board.score, scoreDec, scoreUni);
       board.print(board.time, timeDec, timeUni);
       sweater.clear();
@@ -85,10 +82,9 @@ window.onload = () => {
       sweater.addVariation();
       sweater.draw();
     }
-    console.log(sweater.variations.length);
   });
   startButton.addEventListener("click", () => {
-    board.intervalId = clearInterval();
+    board.clearTime();
     board.time = 60;
     board.score = 0;
     board.print(board.score, scoreDec, scoreUni);
@@ -97,10 +93,11 @@ window.onload = () => {
     sweater.createGrid();
     sweater.addVariation();
     sweater.draw();
+    board.startTime();
   });
 
-  // ctx.scale(scale, scale);
   sweater.createGrid();
   sweater.addVariation();
   sweater.draw();
+  board.startTime(timeDec, timeUni);
 };
