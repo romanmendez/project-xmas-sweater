@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css?family=Mountains+of+Christmas:400,700&display=swap");
+
+body {
+  zoom: 0.75;
+  background: linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), #000;
+  background-size: 10px 12px, 10px 12px, 10px 12px, 10px 12px;
+  background-position: calc(5.5px - 4px) 50%, -9px 50%, calc(5.5px - 4px) calc(50% - 6.5px), -9px calc(50% - 6px);
+}
+body #wrap {
+  margin: 0 200px 20px;
+  width: 1000px;
+  height: 700px;
+  box-shadow: 0 40px 40px -10px rgba(0, 0, 0, 0.5), 0 0 0 200vh rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  min-width: 1000px;
+  background: linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), linear-gradient(-55deg, transparent 2.5px, #db2430 2.5px, #db2430 3.5px, #db2430 4.5px, transparent 4.5px), #000;
+  background-size: 10px 12px, 10px 12px, 10px 12px, 10px 12px;
+  background-position: 0px 50%, -10.5px 50%, 0px calc(50% - 6px), -10.5px calc(50% - 6px);
+}
+.stats,
+button {
+  display: flex;
+  justify-content: space-around;
+}
+.board {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  font-family: "Mountains of Christmas";
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+button,
+.time,
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+  font-size: 20px;
+  color: #701319;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  background: transparent;
+  font-family: "Mountains of Christmas";
+  font-size: 30px;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+  width: 75px;
+  height: 25px;
+  box-shadow: 0 0 0 2px #fff, 0 5px 10px black;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 0;
+}
+button {
+  margin: 31px 0;
+  width: 200px;
+  height: 50px;
+}
+.hide {
+  display: none;
+}
+.instructions,
+h1 {
+  font-family: "Mountains of Christmas";
+  font-size: 25px;
+  color: white;
+  width: 500px;
+  margin-top: 40px;
+  opacity: 0.8;
+}
+h1 {
+  margin: 30px 0 10px 500px;
+  font-size: 90px;
+  width: 800px;
+  text-shadow: 1px 10px #000;
+}
