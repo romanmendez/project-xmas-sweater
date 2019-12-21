@@ -1,5 +1,5 @@
 class Figure {
-  constructor(ctx, figure, canvasWidth, canvasHeight, background) {
+  constructor(ctx, figure, canvasWidth, canvasHeight) {
     this.ctx = ctx;
     this.figure = this.getFigure(figure);
     this.canvasWidth = canvasWidth;

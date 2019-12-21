@@ -43,6 +43,7 @@ class Sweater {
         position.push(this.figures[randomE]);
       })
     );
+    console.log(this.grid);
   }
   addVariation() {
     this.variations = [];

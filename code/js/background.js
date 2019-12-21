@@ -1,9 +1,10 @@
 class Background {
-  constructor(ctx, width, height) {
+  constructor(ctx, width, height, color) {
     this.background;
     this.ctx = ctx;
     this.width = width;
     this.height = height;
+    this.color = color;
   }
   draw() {
     this.ctx.scale(0.7, 0.7);

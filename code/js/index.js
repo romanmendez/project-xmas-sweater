@@ -3,8 +3,7 @@ window.onload = () => {
   let ctx = canvas.getContext("2d");
   let clickX;
   let clickY;
-  let zoom = 0.7;
-  let scale = 1 * zoom;
+  let scale = 0.7;
   let width = 1000;
   let height = 700;
   let score = 0;
@@ -13,18 +12,16 @@ window.onload = () => {
   let timeDec = document.getElementById("timeDec");
   let scoreUni = document.getElementById("scoreUni");
   let scoreDec = document.getElementById("scoreDec");
-  let sweaters = document.getElementById("sweaters");
-
   let background = document.getElementById("background");
   let backgroundCtx = background.getContext("2d");
-  background.width = 7;
-  background.height = 7;
-
-  let backgroundImg = new Background(backgroundCtx, 10, 10);
-  backgroundImg.draw();
 
   canvas.width = width;
   canvas.height = height;
+  background.width = 7;
+  background.height = 7;
+
+  let whiteBackground = new Background(backgroundCtx, 10, 10);
+  whiteBackground.draw();
 
   let reindeer = new Figure(ctx, "reindeer", width, height, background);
   let darkStar = new Figure(ctx, "darkStar", width, height, background);
@@ -53,7 +50,7 @@ window.onload = () => {
     let el = element.getBoundingClientRect();
     clickX = event.clientX - el.left;
     clickY = event.clientY - el.top;
-    console.log("clickX: " + clickX, "clickY: " + clickY, "eX:", event.clientX, "eY:", event.clientY, "element L", el.left, "element T", el.top, "width:", el.width, "height:", el.height);
+    console.log(element, "clickX: " + clickX, "clickY: " + clickY, "eX:", event.clientX, "eY:", event.clientY, "element L", el.left, "element T", el.top, "width:", el.width, "height:", el.height);
   }
   canvas.addEventListener("mousedown", e => {
     getMousePosition(wrap, e);
@@ -70,17 +67,17 @@ window.onload = () => {
       console.log(errased);
       board.score++;
       board.print(board.score, scoreDec, scoreUni);
-      if (sweater.variations.length === 0) {
-        sweater.clear();
-        sweater.createGrid();
-        sweater.addVariation();
-        sweater.draw();
-      }
     } else if (board.score > 0) {
       board.score--;
       board.print(board.score, scoreDec, scoreUni);
     } else if (board.score === 0) {
       sweater.gameOver();
+    }
+    if (sweater.variations.length === 0) {
+      sweater.clear();
+      sweater.createGrid();
+      sweater.addVariation();
+      sweater.draw();
     }
     console.log(sweater.variations.length);
   });
