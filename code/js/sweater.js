@@ -43,7 +43,6 @@ class Sweater {
         position.push(this.figures[randomE]);
       })
     );
-    console.log(this.grid);
   }
   addVariation() {
     this.variations = [];
@@ -91,5 +90,14 @@ class Sweater {
     this.clear();
     this.ctx.font = "100px monospace";
     this.ctx.fillText("GAME OVER", 250, 350);
+    this.ctx.font = "40px monospace";
+    this.ctx.fillText("CLICK ONLY ON THE MISTAKES", 200, 390);
+  }
+  timeUp(score) {
+    this.clear();
+    this.ctx.font = "100px monospace";
+    this.ctx.fillText("TIME'S UP", 250, 350);
+    this.ctx.font = "40px monospace";
+    this.ctx.fillText("YOU FIXED " + Math.floor(score / 5) + " SWEATERS", 280, 390);
   }
 }
