@@ -44,8 +44,6 @@ window.onload = () => {
   let sweater = new Sweater(ctx, figuresArr, width, height);
   let board = new Board(sweater);
 
-  board.startTime(timeDec, timeUni);
-
   function getMousePosition(element, event) {
     let el = element.getBoundingClientRect();
     clickX = event.clientX - el.left;
@@ -95,6 +93,5 @@ window.onload = () => {
     startGame();
   });
 
-  newBoard();
-  startGame();
+  sweater.title(background);
 };
