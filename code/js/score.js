@@ -1,7 +1,7 @@
 class Board {
   constructor(sweater) {
     this.intervalId;
-    this.time = 2;
+    this.time = 30;
     this.score = 0;
     this.sweater = sweater;
   }

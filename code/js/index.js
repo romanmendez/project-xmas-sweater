@@ -74,7 +74,6 @@ window.onload = () => {
       sweater.gameOver();
     }
     if (sweater.variations.length === 0) {
-      board.clearTime();
       board.print(board.score, scoreDec, scoreUni);
       board.print(board.time, timeDec, timeUni);
       sweater.clear();
@@ -93,11 +92,10 @@ window.onload = () => {
     sweater.createGrid();
     sweater.addVariation();
     sweater.draw();
-    board.startTime();
+    board.startTime(timeDec, timeUni);
   });
 
   sweater.createGrid();
   sweater.addVariation();
   sweater.draw();
-  board.startTime(timeDec, timeUni);
 };

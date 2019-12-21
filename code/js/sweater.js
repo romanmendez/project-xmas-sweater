@@ -99,6 +99,6 @@ class Sweater {
     this.ctx.font = "100px monospace";
     this.ctx.fillText("TIME'S UP", 250, 350);
     this.ctx.font = "40px monospace";
-    this.ctx.fillText("YOU FIXED " + (score % 5) + " SWEATERS", 280, 390);
+    this.ctx.fillText("YOU FIXED " + Math.floor(score / 5) + " SWEATERS", 280, 390);
   }
 }
