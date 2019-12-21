@@ -7,7 +7,7 @@ body {
   background-position: calc(5.5px - 4px) 50%, -9px 50%, calc(5.5px - 4px) calc(50% - 6.5px), -9px calc(50% - 6px);
 }
 body #wrap {
-  margin: 0 200px 20px;
+  margin: 100px 200px 20px;
   width: 1000px;
   height: 700px;
   box-shadow: 0 40px 40px -10px rgba(0, 0, 0, 0.5), 0 0 0 200vh rgba(0, 0, 0, 0.05);
