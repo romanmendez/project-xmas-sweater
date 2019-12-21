@@ -18,7 +18,6 @@ class Background {
       this.ctx.lineTo(backgrounPoly[i], backgrounPoly[i + 1]);
     }
     this.ctx.fillStyle = "white";
-    // this.ctx.fillStyle = "#db2430";
     this.ctx.fill();
     this.ctx.closePath();
   }

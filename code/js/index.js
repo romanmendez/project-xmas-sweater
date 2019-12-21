@@ -6,7 +6,6 @@ window.onload = () => {
   let scale = 0.7;
   let width = 1000;
   let height = 700;
-  let score = 0;
   let varIndex;
   let timeUni = document.getElementById("timeUni");
   let timeDec = document.getElementById("timeDec");
