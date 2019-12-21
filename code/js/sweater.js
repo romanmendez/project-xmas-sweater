@@ -86,6 +86,15 @@ class Sweater {
   clear() {
     this.ctx.clearRect(0, 0, this.width * 2, this.height);
   }
+  title(background) {
+    this.ctx.fillStyle = this.ctx.createPattern(background, "repeat");
+    this.ctx.fill();
+    this.fillStyle = "white";
+    this.ctx.font = "90px monospace";
+    this.ctx.fillText("FIX THE SWEATER", 100, 350);
+    this.ctx.font = "40px monospace";
+    this.ctx.fillText("CLICK TO START", 350, 390);
+  }
   gameOver() {
     this.clear();
     this.ctx.font = "100px monospace";
