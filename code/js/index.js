@@ -65,11 +65,12 @@ window.onload = () => {
   }
   canvas.addEventListener("mousedown", e => {
     getMousePosition(wrap, e);
-    clickX = width * scale - clickX;
+    clickX = width * scale - clickX - 40;
     let isVariation = sweater.variations.some((e, i) => {
       let figureX = e[0] * scale;
       let figureY = e[1] * scale;
       varIndex = i;
+      console.log(clickX, clickY);
       return clickX > figureX && clickX < figureX + 100 * scale && clickY > figureY && clickY < figureY + 100 * scale;
     });
     if (isVariation) {
@@ -80,11 +81,12 @@ window.onload = () => {
     } else if (board.score > 0) {
       board.score--;
       board.print(board.score, scoreDec, scoreUni);
-    } else if (board.score === 0) {
+    } else if (board.score === 0 && board.time < 60) {
       board.clearTime();
       sweater.gameOver();
+      board.time = 60;
     }
-    if (sweater.variations.length === 0) {
+    if (sweater.variations.length === 0 && board.intervalId === 1) {
       newBoard();
     }
   });
