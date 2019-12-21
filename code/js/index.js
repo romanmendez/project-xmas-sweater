@@ -12,6 +12,7 @@ window.onload = () => {
   let timeDec = document.getElementById("timeDec");
   let scoreUni = document.getElementById("scoreUni");
   let scoreDec = document.getElementById("scoreDec");
+  let startButton = document.getElementById("start");
   let background = document.getElementById("background");
   let backgroundCtx = background.getContext("2d");
 
@@ -74,6 +75,11 @@ window.onload = () => {
       sweater.gameOver();
     }
     if (sweater.variations.length === 0) {
+      board.intervalId = clearInterval();
+      board.time = 60;
+      board.score = 0;
+      board.print(board.score, scoreDec, scoreUni);
+      board.print(board.time, timeDec, timeUni);
       sweater.clear();
       sweater.createGrid();
       sweater.addVariation();
@@ -81,6 +87,18 @@ window.onload = () => {
     }
     console.log(sweater.variations.length);
   });
+  startButton.addEventListener("click", () => {
+    board.intervalId = clearInterval();
+    board.time = 60;
+    board.score = 0;
+    board.print(board.score, scoreDec, scoreUni);
+    board.print(board.time, timeDec, timeUni);
+    sweater.clear();
+    sweater.createGrid();
+    sweater.addVariation();
+    sweater.draw();
+  });
+
   // ctx.scale(scale, scale);
   sweater.createGrid();
   sweater.addVariation();
