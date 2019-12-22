@@ -2,6 +2,8 @@
 
 Fix the Sweater is a puzzle game based on Holiday CSSweater Generator generator by Adam Kuhn (https://codepen.io/cobra_winfrey/pen/ZEYzMBj).
 
+[![](./code/img/intro-screenshot.png)]
+
 ### Goal
 
 The goal of the game is to find the mistakes in simatry on the right side of the sweater. There are 5 mistakes on every sweater. As soon as you find the 5, a new sweater pattern is generated with 5 new mistakes. Find as many mistakes as you can before the time is up.
@@ -74,7 +76,7 @@ drawMirror(sX, sY) {
 
 A new sweater pattern is generated randomy every time the game is loaded or after the player has fixed the 5 symetry mistakes.
 
-# Grid
+### Grid
 
 The Sweater class creates a grid of 100x100 squares based on the width and height of the canvas element. The grid array stores arrays with XY positions.
 
@@ -113,7 +115,19 @@ this.grid.forEach(line =>
 );
 ```
 
-# Variations
+The resulting grid array looks like this:
+
+```javascript
+[
+  [[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure]],
+  [[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure]],
+  [[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure]],
+  [[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure],[posX, posY, Figure]],
+  ...
+]
+```
+
+### Variations
 
 Once we have the grid of randomized positions with a figure added to each one, we add the variations.
 
@@ -139,7 +153,7 @@ console.log(this.blanks);
 this.variations.splice(0, this.variations.length - this.variationsNumber);
 ```
 
-# Draw
+### Draw
 
 Once the grid, variations and blank spaces are created, we draw. First we draw a symetrical design, and then we overwrite the variations and the blank spaces.
 
