@@ -2,7 +2,7 @@
 
 Fix the Sweater is a puzzle game based on Holiday CSSweater Generator generator by Adam Kuhn (https://codepen.io/cobra_winfrey/pen/ZEYzMBj).
 
-[![](./code/img/intro-screenshot.png)]
+![](./code/img/intro-screenshot.png)
 
 ### Goal
 
