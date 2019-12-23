@@ -13,7 +13,7 @@ https://romanmendez.github.io/project-xmas-sweater/
 
 The patterns on the sweater and all the game logic is done in Javascript and painted into de canvas with the `getConext("2d")` method.
 
-## Background
+## Background.js
 
 The document background and sweater canvas background are done with CSS, taken directly from the Holiday CSSweater Generator.
 
@@ -34,7 +34,7 @@ this.ctx.fill();
 this.ctx.closePath();
 ```
 
-## Figures
+## Figure.js
 
 The figures on the sweater are generated with polygon coordinates taken from Adam Kuhn's generator and transformed into arrays of X,Y coordinates that are painted one by one using a for loop.
 
@@ -72,11 +72,11 @@ drawMirror(sX, sY) {
   }
 ```
 
-## Sweater
+## Sweater.js
 
 A new sweater pattern is generated randomy every time the game is loaded or after the player has fixed the 5 symetry mistakes.
 
-### Grid
+### Grid Creation
 
 The Sweater class creates a grid of 100x100 squares based on the width and height of the canvas element. The grid array stores arrays with XY positions.
 
@@ -127,7 +127,7 @@ The resulting grid array looks like this:
 ]
 ```
 
-### Variations
+### Adding Variations
 
 Once we have the grid of randomized positions with a figure added to each one, we add the variations.
 
@@ -153,7 +153,7 @@ console.log(this.blanks);
 this.variations.splice(0, this.variations.length - this.variationsNumber);
 ```
 
-### Draw
+### Drawing Grid
 
 Once the grid, variations and blank spaces are created, we draw. First we draw a symetrical design, and then we overwrite the variations and the blank spaces.
 
@@ -172,5 +172,58 @@ this.grid.forEach(line =>
 this.blanks.forEach(position => {
   this.ctx.clearRect(position[0], position[1], 100, 100);
   this.ctx.clearRect(this.width * 2 - 100 - position[0], position[1], 100, 100);
+});
+```
+
+## Score.js
+
+Players have 60 seconds to fix as many sweaters as possible. Each sweater has 5 symetry mistakes and the player is given 1 point for each mistake he clicks on and corrects. If the player clicks on a figure that is not asymetrical, the player looses a point. If the player reaches 0 points they loose.
+
+The Board class contains a simple `setInterval` function to count down the time, a `print` function to add to score and time to the DOM, a `resetTime` function which resets the time to 60 seconds, and a `resetInterval` which stops the timer when a player looses before the time is up.
+
+## Index.js
+
+This file declares all the DOM elements, declares instances of Sweater, Background, ScoreBoard, and Figure classes, and contains the mouse event listener.
+
+To get the position of the mouse clicks we created a function that calculates de canvas position in relation to the document:
+
+```javascript
+function getMousePosition(element, event) {
+  let el = element.getBoundingClientRect();
+  let clickX = event.clientX - el.left;
+  let clickY = event.clientY - el.top;
+  return { x: clickX, y: clickY };
+}
+```
+
+Having the mouse position we can now imprement the main game logic:
+
+```javascript
+canvas.addEventListener("mousedown", e => {
+  let clickPos = getMousePosition(wrap, e);
+  let variationIndex;
+  clickPos.x = width * scale - clickPos.x - 40;
+  let isVariation = sweater.variations.some((e, i) => {
+    let figureX = e[0] * scale;
+    let figureY = e[1] * scale;
+    variationIndex = i;
+    return clickPos.x > figureX && clickPos.x < figureX + 100 * scale && clickPos.y > figureY && clickPos.y < figureY + 100 * scale;
+  });
+  if (isVariation) {
+    sweater.variations.splice(variationIndex, 1);
+    sweater.draw();
+    board.score++;
+    board.print(board.score, scoreDec, scoreUni);
+  } else if (board.score > 0) {
+    board.score--;
+    board.print(board.score, scoreDec, scoreUni);
+  } else if (board.score === 0 && board.intervalId === 1) {
+    board.clearTime();
+    board.resetTime();
+    sweater.gameOver();
+  }
+  if (sweater.variations.length === 0 && board.intervalId === 1) {
+    newBoard();
+  }
 });
 ```
