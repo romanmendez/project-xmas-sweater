@@ -49,12 +49,13 @@ class Sweater {
     // add varied figure to every grid position
     this.grid.forEach(line =>
       line.forEach(position => {
-        let figureVar = this.figures.slice();
-        figureVar.splice(figureVar.indexOf(position[2]), 1);
-        let randomE = Math.floor(Math.random() * figureVar.length);
-        position.push(figureVar[randomE]);
+        let figuresCopy = this.figures.slice();
+        figuresCopy.splice(figuresCopy.indexOf(position[2]), 1);
+        let randomE = Math.floor(Math.random() * figuresCopy.length);
+        position.push(figuresCopy[randomE]);
       })
     );
+    console.log(this.grid);
     // add all grid positions to variations array
     this.grid.forEach(line =>
       line.forEach(position => {
@@ -64,6 +65,7 @@ class Sweater {
     // randomize variations, create blanks and shrink both arrays
     this.randomizer(this.variations);
     this.blanks = this.variations.slice(this.variationsNumber, this.blanksNumber + this.variationsNumber);
+    console.log(this.blanks);
     this.variations.splice(0, this.variations.length - this.variationsNumber);
   }
   draw() {

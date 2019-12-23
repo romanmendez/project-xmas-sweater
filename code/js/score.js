@@ -1,4 +1,4 @@
-class Board {
+class ScoreBoard {
   constructor(sweater) {
     this.intervalId;
     this.time = 60;
@@ -16,8 +16,9 @@ class Board {
       }
     }, 1000);
   }
-  resetTime() {
-    this.time = 10;
+  reset() {
+    this.time = 60;
+    this.score = 0;
   }
   print(value, dec, uni = null) {
     if (uni === null) {
