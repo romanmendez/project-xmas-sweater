@@ -6,7 +6,6 @@ class Background {
     this.height = height;
     this.color = color;
   }
-  create() {}
   draw() {
     this.ctx.scale(0.7, 0.7);
     this.ctx.fillStyle = "black";

@@ -69,6 +69,7 @@ class Sweater {
     this.variations.splice(0, this.variations.length - this.variationsNumber);
   }
   draw() {
+    // draw all figures and variations
     this.grid.forEach(line =>
       line.forEach(position => {
         position[2].draw(position[0], position[1]);
@@ -80,15 +81,18 @@ class Sweater {
         }
       })
     );
+    // draw blank spaces
     this.blanks.forEach(position => {
       this.ctx.clearRect(position[0], position[1], 100, 100);
       this.ctx.clearRect(this.width * 2 - 100 - position[0], position[1], 100, 100);
     });
   }
   clear() {
+    // clear the whole canvas
     this.ctx.clearRect(0, 0, this.width * 2, this.height);
   }
   title(background) {
+    // draw title screen
     this.ctx.fillStyle = this.ctx.createPattern(background, "repeat");
     this.ctx.fill();
     this.fillStyle = "white";
@@ -98,6 +102,7 @@ class Sweater {
     this.ctx.fillText("CLICK TO START", 350, 390);
   }
   gameOver() {
+    // draw game over screen
     this.clear();
     this.ctx.font = "100px monospace";
     this.ctx.fillText("GAME OVER", 250, 350);
@@ -105,6 +110,7 @@ class Sweater {
     this.ctx.fillText("CLICK ONLY ON THE MISTAKES", 200, 390);
   }
   timeUp(score) {
+    // draw time's up screen
     this.clear();
     this.ctx.font = "100px monospace";
     this.ctx.fillText("TIME'S UP", 250, 350);
