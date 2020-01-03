@@ -1,27 +1,21 @@
 window.onload = () => {
+  let background = document.getElementById("background");
+  let backgroundCtx = background.getContext("2d");
   let canvas = document.getElementById("canvas");
   let ctx = canvas.getContext("2d");
-  let clickX;
-  let clickY;
-  let scale = 0.7;
-  let width = 1000;
-  let height = 700;
-  let varIndex;
   let timeUni = document.getElementById("timeUni");
   let timeDec = document.getElementById("timeDec");
   let scoreUni = document.getElementById("scoreUni");
   let scoreDec = document.getElementById("scoreDec");
   let startButton = document.getElementById("start");
-  let background = document.getElementById("background");
-  let backgroundCtx = background.getContext("2d");
 
+  let scale = 0.7;
+  let width = 1000;
+  let height = 700;
   canvas.width = width;
   canvas.height = height;
   background.width = 7;
   background.height = 7;
-
-  let whiteBackground = new Background(backgroundCtx, 10, 10);
-  whiteBackground.draw();
 
   let reindeer = new Figure(ctx, "reindeer", width, height, background);
   let darkStar = new Figure(ctx, "darkStar", width, height, background);
@@ -29,7 +23,6 @@ window.onload = () => {
   let anis = new Figure(ctx, "anis", width, height, background);
   let pitchfork = new Figure(ctx, "pitchfork", width, height, background);
   let dinosaur = new Figure(ctx, "dinosaur", width, height, background);
-  let horns = new Figure(ctx, "horns", width, height, background);
   let tree = new Figure(ctx, "tree", width, height, background);
   let heart = new Figure(ctx, "heart", width, height, background);
   let ax = new Figure(ctx, "ax", width, height, background);
@@ -41,18 +34,19 @@ window.onload = () => {
 
   let figuresArr = [reindeer, darkStar, goat, anis, pitchfork, dinosaur, tree, heart, ax, star, rhombus, star2, crown, triangle];
 
+  let whiteBackground = new Background(backgroundCtx, 10, 10);
   let sweater = new Sweater(ctx, figuresArr, width, height);
-  let board = new Board(sweater);
+  let board = new ScoreBoard(sweater);
 
   function getMousePosition(element, event) {
     let el = element.getBoundingClientRect();
-    clickX = event.clientX - el.left;
-    clickY = event.clientY - el.top;
+    let clickX = event.clientX - el.left;
+    let clickY = event.clientY - el.top;
+    return { x: clickX, y: clickY };
   }
   function startGame() {
     board.clearTime();
-    board.time = 60;
-    board.score = 0;
+    board.reset();
     board.print(board.score, scoreDec, scoreUni);
     board.print(board.time, timeDec, timeUni);
     board.startTime(timeDec, timeUni);
@@ -64,27 +58,27 @@ window.onload = () => {
     sweater.draw();
   }
   canvas.addEventListener("mousedown", e => {
-    getMousePosition(wrap, e);
-    clickX = width * scale - clickX - 40;
+    let clickPos = getMousePosition(wrap, e);
+    let variationIndex;
+    clickPos.x = width * scale - clickPos.x - 40;
     let isVariation = sweater.variations.some((e, i) => {
       let figureX = e[0] * scale;
       let figureY = e[1] * scale;
-      varIndex = i;
-      console.log(clickX, clickY);
-      return clickX > figureX && clickX < figureX + 100 * scale && clickY > figureY && clickY < figureY + 100 * scale;
+      variationIndex = i;
+      return clickPos.x > figureX && clickPos.x < figureX + 100 * scale && clickPos.y > figureY && clickPos.y < figureY + 100 * scale;
     });
     if (isVariation) {
-      sweater.variations.splice(varIndex, 1);
+      sweater.variations.splice(variationIndex, 1);
       sweater.draw();
       board.score++;
       board.print(board.score, scoreDec, scoreUni);
     } else if (board.score > 0) {
       board.score--;
       board.print(board.score, scoreDec, scoreUni);
-    } else if (board.score === 0 && board.time < 60) {
+    } else if (board.score === 0 && board.intervalId === 1) {
       board.clearTime();
+      board.resetTime();
       sweater.gameOver();
-      board.time = 60;
     }
     if (sweater.variations.length === 0 && board.intervalId === 1) {
       newBoard();
@@ -95,5 +89,6 @@ window.onload = () => {
     startGame();
   });
 
+  whiteBackground.draw();
   sweater.title(background);
 };
