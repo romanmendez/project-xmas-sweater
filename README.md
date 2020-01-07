@@ -227,3 +227,7 @@ canvas.addEventListener("mousedown", e => {
   }
 });
 ```
+
+# Play
+
+https://romanmendez.github.io/project-xmas-sweater/
