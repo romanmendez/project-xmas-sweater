@@ -49,12 +49,13 @@ class Sweater {
     // add varied figure to every grid position
     this.grid.forEach(line =>
       line.forEach(position => {
-        let figureVar = this.figures.slice();
-        figureVar.splice(figureVar.indexOf(position[2]), 1);
-        let randomE = Math.floor(Math.random() * figureVar.length);
-        position.push(figureVar[randomE]);
+        let figuresCopy = this.figures.slice();
+        figuresCopy.splice(figuresCopy.indexOf(position[2]), 1);
+        let randomE = Math.floor(Math.random() * figuresCopy.length);
+        position.push(figuresCopy[randomE]);
       })
     );
+    console.log(this.grid);
     // add all grid positions to variations array
     this.grid.forEach(line =>
       line.forEach(position => {
@@ -64,9 +65,11 @@ class Sweater {
     // randomize variations, create blanks and shrink both arrays
     this.randomizer(this.variations);
     this.blanks = this.variations.slice(this.variationsNumber, this.blanksNumber + this.variationsNumber);
+    console.log(this.blanks);
     this.variations.splice(0, this.variations.length - this.variationsNumber);
   }
   draw() {
+    // draw all figures and variations
     this.grid.forEach(line =>
       line.forEach(position => {
         position[2].draw(position[0], position[1]);
@@ -78,15 +81,18 @@ class Sweater {
         }
       })
     );
+    // draw blank spaces
     this.blanks.forEach(position => {
       this.ctx.clearRect(position[0], position[1], 100, 100);
       this.ctx.clearRect(this.width * 2 - 100 - position[0], position[1], 100, 100);
     });
   }
   clear() {
+    // clear the whole canvas
     this.ctx.clearRect(0, 0, this.width * 2, this.height);
   }
   title(background) {
+    // draw title screen
     this.ctx.fillStyle = this.ctx.createPattern(background, "repeat");
     this.ctx.fill();
     this.fillStyle = "white";
@@ -96,6 +102,7 @@ class Sweater {
     this.ctx.fillText("CLICK TO START", 350, 390);
   }
   gameOver() {
+    // draw game over screen
     this.clear();
     this.ctx.font = "100px monospace";
     this.ctx.fillText("GAME OVER", 250, 350);
@@ -103,6 +110,7 @@ class Sweater {
     this.ctx.fillText("CLICK ONLY ON THE MISTAKES", 200, 390);
   }
   timeUp(score) {
+    // draw time's up screen
     this.clear();
     this.ctx.font = "100px monospace";
     this.ctx.fillText("TIME'S UP", 250, 350);

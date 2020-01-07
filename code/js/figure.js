@@ -7,6 +7,7 @@ class Figure {
     this.background = background;
   }
   draw(sX, sY) {
+    // draw figures facing original direction
     this.ctx.beginPath();
     this.ctx.moveTo(sX + this.figure[0], sY + this.figure[1]);
     for (let i = 0; i < this.figure.length; i += 2) {
